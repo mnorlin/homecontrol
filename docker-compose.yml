@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  homecontrol:
+    container_name: homecontrol
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    restart: unless-stopped
