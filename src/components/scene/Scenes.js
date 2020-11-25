@@ -97,7 +97,7 @@ export function ScenesSettings() {
   return scenes.map((scene) => (
     <TimeInput
       key={scene.id}
-      name={scene.name}
+      name={t(scene.name)}
       value={scene.schedule.time}
       onChange={(e) => saveSceneSchedule(scene.id, e.target.value)}
     />
