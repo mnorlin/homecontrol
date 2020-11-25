@@ -16,10 +16,57 @@ import Settings from "./components/Settings";
 import t from "./utils/translate";
 
 export default function App() {
+  const url = new URL(window.location.href);
+
+  if (url.searchParams.get("reset")) {
+    localStorage.clear();
+    window.location.href = window.location.href.split("?")[0];
+  }
+
   const [lights, updateLight] = useLights(1000 * 10); // Update every 10sec
   const sensors = useSensors(1000 * 60); // Update every 1min
   const weatherProps = useWeather(1000 * 60 * 30); // Update every 30min
   const rooms = mapToRooms(useRooms(), lights, sensors);
+
+  if (url.searchParams.get("debug")) {
+    const browser = {};
+    browser["langauge"] = window.navigator.language;
+    browser["langauges"] = window.navigator.languages;
+    browser["userAgent"] = window.navigator.userAgent;
+
+    const secrets = ["hue-username", "weather-city", "weather-key"];
+    const config = {};
+    Object.keys(localStorage).forEach(function (key) {
+      config[key] = secrets.includes(key) ? "*****" : localStorage.getItem(key);
+    });
+
+    const data = {};
+    data["lights"] = lights;
+    data["sensors"] = sensors;
+    data["rooms"] = rooms;
+    data["weatherProps"] = weatherProps;
+
+    return (
+      <div className="container">
+        <h1>Debug mode</h1>
+
+        <div className="card my-4">
+          <h2 className="card-header h5">Browser</h2>
+          <pre className="card-body">{JSON.stringify(browser, null, 2)}</pre>
+        </div>
+
+        <div className="card my-4">
+          <h2 className="card-header h5">Config</h2>
+          <pre className="card-body">{JSON.stringify(config, null, 2)}</pre>
+        </div>
+
+        <div className="card my-4">
+          <h2 className="card-header h5">Data</h2>
+          <pre className="card-body">{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
