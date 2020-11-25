@@ -85,6 +85,7 @@ function unixTimeToHour(timestamp) {
   const date = new Date(timestamp * 1000);
 
   return new Intl.DateTimeFormat(undefined, {
-    timeStyle: "short",
+    hour: "numeric",
+    minute: "numeric",
   }).format(date);
 }
