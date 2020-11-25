@@ -20,11 +20,19 @@ Set up a dashboard to control your Philips Hue lights using an old tablet or pho
 
 ## How to run
 
-### Download the release and run locally in your browser
+The easiest way is to download and unzip the latest release on your computer. You can then just open `index.html` in your browser.
 
-Download the latest release, and open `index.html` in your browser.
+If you want more options, you can clone the repository
 
-### Build it yourself
+`git clone https://github.com/mnorlin/homecontrol.git`
+
+and pull its [submodules](https://github.com/erikflowers/weather-icons) (used for the weather icons)
+
+`git submodule init`
+
+`git submodule update`
+
+### Build your own release
 
 Edit `package.json`, and add the line `"homepage": ".",` at the root of the json file. Execute `npm run build`, when finished, you can open up `./build/index.html` in your browser.
 
