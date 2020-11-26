@@ -50,7 +50,9 @@ export function HueSettings() {
           </button>
         }
       />
-      <small className="text-muted">{`${t("hue.generate-key")} `}</small>
+      <small className="text-muted">
+        {`${t("hue.generate-key")} `} {linkIcon}
+      </small>
     </>
   );
 }
