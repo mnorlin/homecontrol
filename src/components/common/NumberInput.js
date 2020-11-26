@@ -36,7 +36,7 @@ export default function NumberInput({
       >
         <span className="input-group-text">{name}</span>
         <input
-          aria-describedby={validationId}
+          aria-describedby={feedback ? validationId : undefined}
           onChange={onInput}
           type="number"
           className="form-control"

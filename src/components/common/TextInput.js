@@ -33,7 +33,7 @@ export default function TextInput({
       >
         <span className="input-group-text">{name}</span>
         <input
-          aria-describedby={validationId}
+          aria-describedby={feedback ? validationId : undefined}
           onChange={onInput}
           type="text"
           className="form-control"
