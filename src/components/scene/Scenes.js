@@ -49,9 +49,9 @@ export function Scenes({ lights, updateLight }) {
         createToast(
           "info",
           t("scenes.schedule.running").replace("{0}", t(scene.name)),
-          60 * 1000
+          300 * 1000
         );
-        onColorSwitchClick(scene.id, 600);
+        onColorSwitchClick(scene.id, 3000);
       }, timeLeft);
       timeoutIds.push(timeoutId);
     }

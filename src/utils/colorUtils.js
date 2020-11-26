@@ -66,7 +66,7 @@ export function normalizeFromBulb(model, hue, sat, bri) {
 
 export function normalizeToBulb(model, hue, sat, bri) {
   let newHue = hue;
-  if (model === "LCT001" || model === "LCT007") {
+  if ((model === "LCT001" || model === "LCT007") && hue < 40000) {
     newHue += parseInt(6000 / (1 - hue / 65535));
   }
 
