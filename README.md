@@ -2,7 +2,7 @@
 
 Set up a dashboard to control your Philips Hue lights using an old tablet or phone. You get a simple weather forecast and you can control your lights through a floor map.
 
-![Screenshot](public/screenshot.png "Screenshot")
+![Screenshot 1](docs/screenshot-main.png "Screenshot 1") ![Screenshot 2](docs/screenshot-settings.png "Screenshot 2")
 
 **Features:**
 
@@ -71,7 +71,7 @@ A line is drawn between each coordinate in the array. If you want to make space 
 ]
 ```
 
-![Canvas room 1](public/canvas.png "Canvas room 1")
+![Canvas room 1](docs/canvas.png "Canvas room 1")
 
 **Room 2**
 
