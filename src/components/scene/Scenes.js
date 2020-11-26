@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import SceneButton from "./SceneButton";
 import useStorage from "../../hooks/useStorage";
 import createToast from "../../utils/createToast";
@@ -14,20 +14,27 @@ export function Scenes({ lights, updateLight }) {
     saveScenes(defaultStates);
   }
 
-  function onColorSwitchClick(sceneId, transitiontime = 10) {
-    const newState = scenes.find((scene) => scene.id === sceneId).state;
+  const onColorSwitchClick = useCallback(
+    (sceneId, transitiontime = 10) => {
+      const newState = scenes.find((scene) => scene.id === sceneId).state;
 
-    lights.forEach((light) => {
-      const transformedState = normalizeToBulb(
-        light.model,
-        newState.hue,
-        newState.sat,
-        newState.bri
-      );
+      lights.forEach((light) => {
+        const transformedState = normalizeToBulb(
+          light.model,
+          newState.hue,
+          newState.sat,
+          newState.bri
+        );
 
-      updateLight(light.id, { ...transformedState, transitiontime }, !light.on);
-    });
-  }
+        updateLight(
+          light.id,
+          { ...transformedState, transitiontime },
+          !light.on
+        );
+      });
+    },
+    [lights, scenes, updateLight]
+  );
 
   useEffect(() => {
     const timeoutIds = [];
@@ -41,7 +48,7 @@ export function Scenes({ lights, updateLight }) {
       const timeoutId = setTimeout(() => {
         createToast(
           "info",
-          t("scenes.schedule.running").replace("{0}", scene.name),
+          t("scenes.schedule.running").replace("{0}", t(scene.name)),
           60 * 1000
         );
         onColorSwitchClick(scene.id, 600);
@@ -53,8 +60,8 @@ export function Scenes({ lights, updateLight }) {
       for (const timeoutId of timeoutIds) {
         clearTimeout(timeoutId);
       }
-    }; // eslint-disable-next-line
-  }, [scenes]);
+    };
+  }, [scenes, onColorSwitchClick]);
 
   return (
     <div className="scene-section">
