@@ -13,6 +13,7 @@
 /.vscode
 /.nova
 .DS_Store
+.eslintcache
 .env.local
 .env.development.local
 .env.test.local
