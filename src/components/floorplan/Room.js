@@ -30,6 +30,10 @@ export default function Room({
 
   // Draw on light change
   useEffect(() => {
+    const roomActiveColor = getCssVariable("--floor-plan-active");
+    const roomInactiveColor = getCssVariable("--floor-plan-inactive");
+    const roomDisabledColor = getCssVariable("--floor-plan-disabled");
+
     function draw(target, boundries, fillStyle) {
       if (boundries.length === 0) {
         return;
@@ -54,9 +58,9 @@ export default function Room({
       fillStyle ? ctx.fill() : ctx.stroke();
     }
 
-    let roomColor = "rgb(255, 240, 240)";
+    let roomColor = roomDisabledColor;
     if (reachable) {
-      roomColor = lightsOn ? "rgb(255, 255, 255)" : "rgb(230, 230, 230)";
+      roomColor = lightsOn ? roomActiveColor : roomInactiveColor;
     }
     draw(visualCanvas, walls, roomColor);
     draw(visualCanvas, walls);
@@ -64,4 +68,8 @@ export default function Room({
   }, [id, walls, lightsOn, reachable, visualCanvas, hitboxCanvas]);
 
   return null;
+}
+
+function getCssVariable(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name);
 }
