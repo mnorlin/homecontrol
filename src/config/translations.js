@@ -27,7 +27,17 @@ const translations = new Map([
       ["lights.turn-off-all", "Turn lights off"],
 
       ["floor-plan.warning.no-floor-plan", "No floor plan configured"],
-
+      ["form.error.custom.not-json", "This is not valid JSON data"],
+      ["form.error.custom.not-array", "Data must be an array, eg. '[ ]'"],
+      [
+        "form.error.custom.no-coordinates",
+        "Object must contain x and y properties",
+      ],
+      [
+        "form.error.custom.coordinate-not-number",
+        "Coordinate must be a number",
+      ],
+      ["form.error.html.rangeOverflow", "Value must be between 0-360"],
       ["scene.name.morning", "Morning"],
       ["scene.name.forenoon", "Forenoon"],
       ["scene.name.afternoon", "Afternoon"],
@@ -40,7 +50,11 @@ const translations = new Map([
       ["settings.weather", "Weather"],
       ["settings.scenes", "Light Schedule"],
       ["settings.floor-plan", "Floor plan"],
-      ["settings.floor-plan.rotation", "Rotation [deg]"],
+      [
+        "settings.floor-plan.instructions",
+        `Data must be a JSON array containing objects with x & y properties, eg. [{ "x": 0, "y": 0 }, ...]`,
+      ],
+      ["settings.floor-plan.rotation", "Rotation"],
       ["settings.temp-unit", "Temperature unit"],
 
       ["toast.title.success", "Success"],
@@ -93,7 +107,17 @@ const translations = new Map([
       ["lights.turn-off-all", "Släck lamporna"],
 
       ["floor-plan.warning.no-floor-plan", "Ingen planlösning konfigurerad"],
-
+      ["form.error.custom.not-json", "Detta är inte giltig JSON data"],
+      ["form.error.custom.not-array", "Data måste vara en array, '[ ]'"],
+      [
+        "form.error.custom.no-coordinates",
+        "Objektet måste innehålla x och y värden",
+      ],
+      [
+        "form.error.custom.coordinate-not-number",
+        "Koordinaterna måste vara siffror",
+      ],
+      ["form.error.html.rangeOverflow", "Värdet måste vara mellan 0-360"],
       ["scene.name.morning", "Morgon"],
       ["scene.name.forenoon", "Förmiddag"],
       ["scene.name.afternoon", "Eftermiddag"],
@@ -106,7 +130,11 @@ const translations = new Map([
       ["settings.weather", "Väder"],
       ["settings.scenes", "Ljusschema"],
       ["settings.floor-plan", "Planlösning"],
-      ["settings.floor-plan.rotation", "Rotation [deg]"],
+      [
+        "settings.floor-plan.instructions",
+        `Datan måste vara en JSON array innehållandes objekt med x och y data, ex. [{ "x": 0, "y": 0 }, ...]`,
+      ],
+      ["settings.floor-plan.rotation", "Rotation"],
       ["settings.temp-unit", "Temperaturenhet"],
 
       ["toast.title.success", "Lyckad"],

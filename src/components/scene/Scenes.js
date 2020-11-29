@@ -105,6 +105,7 @@ export function ScenesSettings() {
     <TimeInput
       key={scene.id}
       name={t(scene.name)}
+      icon={scene.icon}
       value={scene.schedule.time}
       onChange={(e) => saveSceneSchedule(scene.id, e.target.value)}
     />

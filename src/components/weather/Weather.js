@@ -65,7 +65,7 @@ export function WeatherSettings() {
         value={key}
         onChange={(e) => saveKey(e.target.value)}
       />
-      <small className="text-muted text-center">
+      <div className="form-text">
         {t("weather.register").split("{0}")[0]}
         <a
           className="text-muted"
@@ -76,7 +76,7 @@ export function WeatherSettings() {
           https://openweathermap.org/api
         </a>
         {t("weather.register").split("{0}")[1]}
-      </small>
+      </div>
     </>
   );
 }

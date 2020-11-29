@@ -28,26 +28,24 @@ export default function NumberInput({
   }
 
   return (
-    <>
-      <div
-        className={`input-group input-group-sm ${
-          feedback ? "has-validation" : ""
-        }`}
-      >
-        <span className="input-group-text">{name}</span>
-        <input
-          aria-describedby={feedback ? validationId : undefined}
-          onChange={onInput}
-          type="number"
-          className="form-control"
-          value={value || ""}
-          min={min}
-          max={max}
-          step={step}
-        />
-        {actionButton}
-        {feedback}
-      </div>
-    </>
+    <div
+      className={`input-group input-group-sm ${
+        feedback ? "has-validation" : ""
+      }`}
+    >
+      <span className="input-group-text">{name}</span>
+      <input
+        aria-describedby={feedback ? validationId : undefined}
+        onChange={onInput}
+        type="number"
+        className="form-control"
+        value={value || ""}
+        min={min}
+        max={max}
+        step={step}
+      />
+      {actionButton}
+      {feedback}
+    </div>
   );
 }

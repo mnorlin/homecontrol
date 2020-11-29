@@ -137,14 +137,31 @@ export function FloorPlanSettings() {
       ...walls.slice(index + 1),
     ]);
   }
+
   function validator(value) {
+    let data;
     try {
-      const data = JSON.parse(value);
-      if (!Array.isArray(data)) {
-        return "not-array";
-      }
+      data = JSON.parse(value);
     } catch {
       return "not-json";
+    }
+
+    if (!Array.isArray(data)) {
+      return "not-array";
+    }
+
+    if (data.length === 0) {
+      return "no-coordinates";
+    }
+
+    for (const coordinate of data) {
+      if (coordinate.x === undefined || coordinate.y === undefined) {
+        return "no-coordinates";
+      }
+
+      if (isNaN(coordinate.x) || isNaN(coordinate.y)) {
+        return "coordinate-not-number";
+      }
     }
   }
 
@@ -158,6 +175,9 @@ export function FloorPlanSettings() {
         onChange={(e) => saveRotation((e.target.value / 360) * 2 * Math.PI)}
       />
       <hr />
+      <small className="text-muted mb-4 d-block">
+        {t("settings.floor-plan.instructions")}
+      </small>
       {rooms.map((room) => (
         <TextInput
           key={room.id}

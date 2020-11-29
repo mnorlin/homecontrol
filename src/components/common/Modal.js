@@ -38,7 +38,7 @@ export function Modal({ title, children, onClose, btnText }) {
 
 export function ModalButton({ children }) {
   return (
-    <div className="text-center">
+    <div className="text-center my-3">
       <button
         type="button"
         className="my-auto btn btn-link"

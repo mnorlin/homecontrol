@@ -11,7 +11,13 @@ $body-bg: #efeff4;
 }
 
 fieldset > :not(legend) {
-  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+.input-group img {
+  max-width: 50px;
+  border-top-left-radius: $input-border-radius;
+  border-bottom-left-radius: $input-border-radius;
 }
 
 #toast-section {

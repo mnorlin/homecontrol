@@ -25,23 +25,21 @@ export default function TextInput({
   }
 
   return (
-    <>
-      <div
-        className={`input-group input-group-sm ${
-          feedback ? "has-validation" : ""
-        }`}
-      >
-        <span className="input-group-text">{name}</span>
-        <input
-          aria-describedby={feedback ? validationId : undefined}
-          onChange={onInput}
-          type="text"
-          className="form-control"
-          value={value || ""}
-        />
-        {actionButton}
-        {feedback}
-      </div>
-    </>
+    <div
+      className={`input-group input-group-sm ${
+        feedback ? "has-validation" : ""
+      }`}
+    >
+      <span className="input-group-text">{name}</span>
+      <input
+        aria-describedby={feedback ? validationId : undefined}
+        onChange={onInput}
+        type="text"
+        className="form-control"
+        value={value || ""}
+      />
+      {actionButton}
+      {feedback}
+    </div>
   );
 }
