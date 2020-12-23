@@ -15,7 +15,7 @@ export default function Settings({ children }) {
           width="1em"
           height="1em"
           viewBox="0 0 16 16"
-          className="bi bi-sliders mr-2"
+          className="bi bi-sliders me-2"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -27,11 +27,7 @@ export default function Settings({ children }) {
         {t("common.settings")}
       </ModalButton>
 
-      <Modal
-        title={t("common.settings")}
-        onClose={onClose}
-        btnText={t("common.close")}
-      >
+      <Modal title={t("common.settings")} onClose={onClose} btnText={t("common.close")}>
         <form noValidate className="my-4">
           {React.Children.map(children, (child) => (
             <MenuGroup groupName={child.props.title}>{child}</MenuGroup>

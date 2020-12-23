@@ -85,8 +85,8 @@ fieldset > :not(legend) {
     .card {
       border-width: 1px 0;
       border-radius: 0;
-      margin-left: calc(-0.5 * var(--bs-gutter-x));
-      margin-right: calc(-0.5 * var(--bs-gutter-x));
+      margin-left: calc(-1 * var(--bs-gutter-x));
+      margin-right: calc(-1 * var(--bs-gutter-x));
     }
   }
 

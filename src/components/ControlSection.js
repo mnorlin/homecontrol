@@ -20,19 +20,14 @@ export default function ControlSection({ rooms, updateLight }) {
   const hasFloorPlan = rooms.find((room) => room.walls?.length > 0);
 
   return (
-    <div
-      id="control-section"
-      className={`control-section mt-4 ${
-        hasFloorPlan ? "collapse" : "collapse show"
-      }`}
-    >
+    <div id="control-section" className={`control-section mt-4 ${hasFloorPlan ? "collapse" : "collapse show"}`}>
       {rooms.map((room) => (
         <div key={room.id} className="card mb-4">
           <div className="card-header d-flex justify-content-between align-items-center">
             {room.name}
             {getRoomTemp(room)
               ? getRoomTemp(room).map((info, index) => (
-                  <span key={index} className="ml-2 badge bg-secondary">
+                  <span key={index} className="ms-2 badge bg-secondary">
                     {info}
                   </span>
                 ))

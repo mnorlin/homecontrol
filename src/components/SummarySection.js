@@ -27,7 +27,7 @@ export default function SummarySection({ sensors, lights }) {
   return (
     <ToggleButton idToToggle="control-section">
       <h1 className="h4 text-center mt-4 mb-0">
-        <span className="mr-4 badge bg-secondary">{temperature}</span>
+        <span className="me-4 badge bg-secondary">{temperature}</span>
         <span className="badge bg-secondary">{`${powerConsumption} W`}</span>
       </h1>
     </ToggleButton>
@@ -44,14 +44,10 @@ function calcPowerConsumption(lights) {
 }
 
 function meanTemp(sensors) {
-  const unit = sensors
-    ? sensors.find((sensor) => sensor.type === "ZLLTemperature")?.tempUnit
-    : "";
+  const unit = sensors ? sensors.find((sensor) => sensor.type === "ZLLTemperature")?.tempUnit : "";
 
   const meanValue =
-    sensors
-      .filter((sensor) => sensor.type === "ZLLTemperature")
-      .reduce((acc, sensor) => acc + sensor.temp, 0) /
+    sensors.filter((sensor) => sensor.type === "ZLLTemperature").reduce((acc, sensor) => acc + sensor.temp, 0) /
     sensors.filter((sensor) => sensor.type === "ZLLTemperature").length;
 
   if (isNaN(meanValue)) {

@@ -17,12 +17,7 @@ export function Modal({ title, children, onClose, btnText }) {
             <h1 className="h5 modal-title" id="settingsModalLabel">
               {title}
             </h1>
-            <button
-              type="button"
-              className="btn-close"
-              data-dismiss="modal"
-              aria-label={t("common.close")}
-            ></button>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label={t("common.close")}></button>
           </div>
           <div className="modal-body">{children}</div>
           <div className="modal-footer">
@@ -39,12 +34,7 @@ export function Modal({ title, children, onClose, btnText }) {
 export function ModalButton({ children }) {
   return (
     <div className="text-center my-3">
-      <button
-        type="button"
-        className="my-auto btn btn-link"
-        data-toggle="modal"
-        data-target="#settingsModal"
-      >
+      <button type="button" className="my-auto btn btn-link" data-bs-toggle="modal" data-bs-target="#settingsModal">
         {children}
       </button>
     </div>

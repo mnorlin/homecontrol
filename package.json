@@ -4,7 +4,7 @@
   "private": true,
   "license": "GPL-3.0-only",
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha3",
+    "bootstrap": "^5.0.0-beta1",
     "mathjs": "^8.0.1",
     "node-sass": "^4.0.0",
     "react": "^17.0.1",

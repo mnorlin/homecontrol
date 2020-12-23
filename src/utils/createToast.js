@@ -62,16 +62,16 @@ function addToDOM(type, message) {
   toastHeader.classList.add("toast-header");
 
   const toastType = document.createElement("div");
-  toastType.classList.add("mr-2", "rounded", "toast-type", `bg-${type}`);
+  toastType.classList.add("me-2", "rounded", "toast-type", `bg-${type}`);
 
   const toastTitle = document.createElement("strong");
-  toastTitle.classList.add("mr-auto");
+  toastTitle.classList.add("me-auto");
   toastTitle.innerText = title;
 
   const closeButton = document.createElement("button");
   closeButton.setAttribute("type", "button");
   closeButton.classList.add("btn-close");
-  closeButton.setAttribute("data-dismiss", "toast");
+  closeButton.setAttribute("data-bs-dismiss", "toast");
   closeButton.setAttribute("aria-label", "Close");
 
   const toastBody = document.createElement("div");
