@@ -6,6 +6,7 @@ import useSensors from "hooks/useSensors";
 
 import { Collapse } from "react-bootstrap-v5";
 
+import Debug from "./Debug";
 import { Weather, WeatherSettings } from "components/weather/Weather";
 import { Scenes, ScenesSettings } from "components/scene/Scenes";
 import ControlSection from "components/ControlSection";
@@ -37,43 +38,7 @@ export default function App() {
   }, [rooms.length]); // eslint-disable-line
 
   if (url.searchParams.get("debug")) {
-    const browser = {};
-    browser["language"] = window.navigator.language;
-    browser["languages"] = window.navigator.languages;
-    browser["userAgent"] = window.navigator.userAgent;
-
-    const secrets = ["hue-username", "weather-city", "weather-key"];
-    const config = {};
-    Object.keys(localStorage).forEach(function (key) {
-      config[key] = secrets.includes(key) ? "*****" : localStorage.getItem(key);
-    });
-
-    const data = {};
-    data["lights"] = lights;
-    data["sensors"] = sensors;
-    data["rooms"] = rooms;
-    data["weatherProps"] = weatherProps;
-
-    return (
-      <div className="container">
-        <h1>Debug mode</h1>
-
-        <div className="card my-4">
-          <h2 className="card-header h5">Browser</h2>
-          <pre className="card-body">{JSON.stringify(browser, null, 2)}</pre>
-        </div>
-
-        <div className="card my-4">
-          <h2 className="card-header h5">Config</h2>
-          <pre className="card-body">{JSON.stringify(config, null, 2)}</pre>
-        </div>
-
-        <div className="card my-4">
-          <h2 className="card-header h5">Data</h2>
-          <pre className="card-body">{JSON.stringify(data, null, 2)}</pre>
-        </div>
-      </div>
-    );
+    return <Debug {...{ lights, sensors, weatherProps, rooms }} />;
   }
 
   return (

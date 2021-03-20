@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Debug({ lights, sensors, rooms, weatherProps }) {
   const browser = {};
   browser["language"] = window.navigator.language;
