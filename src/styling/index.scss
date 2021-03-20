@@ -2,17 +2,61 @@
 
 $body-bg: #e9ecef;
 $enable-negative-margins: true;
+$border-radius: 0.5rem;
+$toast-border-color: rgba(black, 0.3);
+$modal-header-border-color: rgba(black, 0.3);
+$card-cap-bg: #f8f9fa;
 
 @import "bootstrap/scss/bootstrap.scss";
 
 :root {
-  --body-bg: #{$gray-200};
-  --floor-plan-active: rgb(255, 255, 255);
-  --floor-plan-inactive: rgb(230, 230, 230);
-  --floor-plan-disabled: rgb(255, 240, 240);
-  --bs-gutter-x: 0.75rem;
+  --floor-plan-active: #{$white};
+  --floor-plan-inactive: #{$gray-300};
+  --floor-plan-disabled: #{$red-100};
 }
 
-//@import "custom.scss";
-@import "dark-mode.scss";
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: #{$gray-700};
+    --body-color: #{$gray-200};
+
+    --text-muted-color: #{$gray-500};
+
+    --card-bg: #{$gray-800};
+    --card-cap-bg: #{$black};
+
+    --popup-bg: #{$gray-800};
+    --popup-content-bg: #{$gray-700};
+    --popup-header-color: #{$gray-500};
+
+    --floor-plan-active: #{$gray-600};
+    --floor-plan-inactive: #{$gray-800};
+    --floor-plan-disabled: rgb(55, 43, 48);
+
+    --input-bg: #{$gray-700};
+    --input-border-color: #{$black};
+    --input-group-bg: #{$gray-900};
+
+    --bs-primary: #055ebd;
+    --bs-success: #006f1a;
+    --bs-info: #01859d;
+    --bs-warning: #9d7700;
+    --bs-danger: #a42a36;
+
+    --statebutton-opacity: 0.7;
+  }
+}
+
+// React Bootstrap bug
+.close {
+  @extend .btn-close;
+  span:first-child {
+    display: none;
+  }
+}
+.sr-only {
+  @extend .visually-hidden;
+}
+
+@import "theme.scss";
 @import "custom.scss";

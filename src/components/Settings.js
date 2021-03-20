@@ -20,8 +20,8 @@ export default function Settings({ children }) {
         {t("common.settings")}
       </Button>
 
-      <Modal show={show} onHide={() => {}}>
-        <Modal.Header>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
           <Modal.Title>{t("common.settings")}</Modal.Title>
         </Modal.Header>
 

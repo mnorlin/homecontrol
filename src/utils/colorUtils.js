@@ -43,6 +43,18 @@ export function HSLToRGB(h, s, l) {
   return "rgb(" + r + "," + g + "," + b + ")";
 }
 
+export function getRedIn8bit(color) {
+  let offset = 0;
+  if (color.includes("#")) {
+    const redHex = color.trim().substring(1, 3);
+    return parseInt(redHex, 16).toString();
+  }
+
+  if (color.includes("rgb")) {
+    return color.split("(")[1].split(",");
+  }
+}
+
 export function bulbColor(hue, sat) {
   const hueDeg = (hue / 65535) * 360;
   //const satPercentage = (sat / 254) * 100;

@@ -62,7 +62,7 @@ function addToDOM(type, message) {
   toastHeader.classList.add("toast-header");
 
   const toastType = document.createElement("div");
-  toastType.classList.add("me-2", "rounded", "toast-type", `bg-${type}`);
+  toastType.classList.add("me-2", "rounded-circle", "toast-type", `bg-${type}`);
 
   const toastTitle = document.createElement("strong");
   toastTitle.classList.add("me-auto");

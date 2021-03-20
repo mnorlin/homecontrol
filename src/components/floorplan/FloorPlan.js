@@ -4,6 +4,7 @@ import { adaptRooms } from "./roomUtils";
 import Room from "./Room";
 import createToast from "utils/createToast";
 import t from "utils/translate";
+import { getRedIn8bit } from "utils/colorUtils";
 import TextInput from "components/common//TextInput";
 import NumberInput from "components/common//NumberInput";
 import useStorage from "hooks/useStorage";
@@ -35,7 +36,8 @@ export function FloorPlan({ rooms, updateLight }) {
 
   function onHouseClick(e) {
     const roomId = getRedPixelValue(e, FLOOR_PLAN_HITBOX, FLOOR_PLAN_WRAPPER);
-    const isOn = getRedPixelValue(e, FLOOR_PLAN, FLOOR_PLAN_WRAPPER) === "255";
+    const isOn =
+      getRedPixelValue(e, FLOOR_PLAN, FLOOR_PLAN_WRAPPER) === getRedPixelValueFromCssVariable("--floor-plan-active");
 
     rooms
       .filter((room) => room.id === roomId)
@@ -176,4 +178,9 @@ export function FloorPlanSettings() {
       ))}
     </>
   );
+}
+
+function getRedPixelValueFromCssVariable(name) {
+  const color = getComputedStyle(document.documentElement).getPropertyValue(name);
+  return getRedIn8bit(color);
 }
