@@ -32,12 +32,13 @@ body {
 }
 
 .toast {
-  background-color: var(--popup-content-bg);
+  background-color: var(--popup-content-bg, $toast-background-color);
+  backdrop-filter: blur(2px);
 }
 
 .toast-header {
-  background-color: var(--popup-bg);
-  color: var(--popup-header-color);
+  background-color: var(--popup-bg, $toast-header-background-color);
+  color: var(--popup-header-color, $toast-header-color);
 }
 
 a,
