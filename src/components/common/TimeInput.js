@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TimeInput({ name, icon, value, onChange, actionButton }) {
   const title = icon ? (
-    <img className="rounded-1" style={{ width: "2.5rem" }} src={`/state_icons/${icon}`} alt={name} />
+    <img className="rounded-1" style={{ width: "2.5rem", height: "2.5rem" }} src={`/state_icons/${icon}`} alt={name} />
   ) : (
     <span className="input-group-text">{name}</span>
   );
