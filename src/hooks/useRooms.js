@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import useStorage from "../hooks/useStorage";
-import createToast from "../utils/createToast";
-import t from "../utils/translate";
+import useStorage from "hooks/useStorage";
+import createToast from "utils/createToast";
+import t from "utils/translate";
 
 export default function useRooms() {
   const [rooms, setRooms] = useState([]);
@@ -15,12 +15,7 @@ export default function useRooms() {
       fetch(`http://${ip}/api/${username}/groups`)
         .then((response) => response.json())
         .then((data) => setRooms(mapRooms(data, floorPlan)))
-        .catch((error) =>
-          createToast(
-            "danger",
-            t("hue.error.connect").replace("{0}", ip).replace("{1}", error)
-          )
-        );
+        .catch((error) => createToast("danger", t("hue.error.connect").replace("{0}", ip).replace("{1}", error)));
     }
   }, [ip, username, floorPlan]);
 
@@ -29,11 +24,7 @@ export default function useRooms() {
 
 function mapRooms(groups, settings) {
   if (groups?.[0]?.error !== undefined) {
-    createToast(
-      "danger",
-      t("hue.rooms.error").replace("{0}", groups?.[0]?.error?.description),
-      null
-    );
+    createToast("danger", t("hue.rooms.error").replace("{0}", groups?.[0]?.error?.description), null);
     return [];
   }
   return Object.entries(groups)

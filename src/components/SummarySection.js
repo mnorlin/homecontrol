@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Loader from "./common/Loader";
-import ToggleButton from "./common/ToggleButton";
+import Loader from "components/common/Loader";
 
-export default function SummarySection({ sensors, lights }) {
+export default function SummarySection({ sensors, lights, onClickCallback }) {
   const [temperature, setTemperature] = useState();
   const [powerConsumption, setPowerConsumption] = useState();
 
@@ -25,12 +24,12 @@ export default function SummarySection({ sensors, lights }) {
     );
   }
   return (
-    <ToggleButton idToToggle="control-section">
+    <div style={{ cursor: "pointer" }} onClick={onClickCallback}>
       <h1 className="h4 text-center mt-4 mb-0">
         <span className="me-4 badge bg-secondary">{temperature}</span>
         <span className="badge bg-secondary">{`${powerConsumption} W`}</span>
       </h1>
-    </ToggleButton>
+    </div>
   );
 }
 

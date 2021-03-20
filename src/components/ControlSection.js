@@ -1,8 +1,8 @@
 import React from "react";
-import SwitchInput from "./common/SwitchInput";
-import Loader from "./common/Loader";
+import SwitchInput from "components/common/SwitchInput";
+import Loader from "components/common/Loader";
 
-export default function ControlSection({ rooms, updateLight }) {
+export default function ControlSection({ rooms, updateLight, controlRef }) {
   if (rooms.length === 0) {
     return (
       <div className="mt-4">
@@ -17,10 +17,8 @@ export default function ControlSection({ rooms, updateLight }) {
       .map((sensor) => sensor.temp + sensor.tempUnit);
   }
 
-  const hasFloorPlan = rooms.find((room) => room.walls?.length > 0);
-
   return (
-    <div id="control-section" className={`control-section mt-4 ${hasFloorPlan ? "collapse" : "collapse show"}`}>
+    <div className="mt-4">
       {rooms.map((room) => (
         <div key={room.id} className="card mb-4">
           <div className="card-header d-flex justify-content-between align-items-center">

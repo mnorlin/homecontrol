@@ -1,11 +1,11 @@
 import React, { useEffect, useCallback } from "react";
 import SceneButton from "./SceneButton";
-import useStorage from "../../hooks/useStorage";
-import createToast from "../../utils/createToast";
-import t from "../../utils/translate";
-import { normalizeToBulb } from "../../utils/colorUtils";
-import defaultStates from "../../config/scenes";
-import TimeInput from "../common/TimeInput";
+import useStorage from "hooks/useStorage";
+import createToast from "utils/createToast";
+import t from "utils/translate";
+import { normalizeToBulb } from "utils/colorUtils";
+import defaultStates from "config/scenes";
+import TimeInput from "components/common/TimeInput";
 
 export function Scenes({ lights, updateLight }) {
   const [scenes, saveScenes] = useStorage("hue-scenes", true);
@@ -19,18 +19,9 @@ export function Scenes({ lights, updateLight }) {
       const newState = scenes.find((scene) => scene.id === sceneId).state;
 
       lights.forEach((light) => {
-        const transformedState = normalizeToBulb(
-          light.model,
-          newState.hue,
-          newState.sat,
-          newState.bri
-        );
+        const transformedState = normalizeToBulb(light.model, newState.hue, newState.sat, newState.bri);
 
-        updateLight(
-          light.id,
-          { ...transformedState, transitiontime },
-          !light.on
-        );
+        updateLight(light.id, { ...transformedState, transitiontime }, !light.on);
       });
     },
     [lights, scenes, updateLight]
@@ -46,11 +37,7 @@ export function Scenes({ lights, updateLight }) {
       const timeLeft = getTimeUntilHour(schedule.time);
 
       const timeoutId = setTimeout(() => {
-        createToast(
-          "info",
-          t("scenes.schedule.running").replace("{0}", t(scene.name)),
-          300 * 1000
-        );
+        createToast("info", t("scenes.schedule.running").replace("{0}", t(scene.name)), 300 * 1000);
         onColorSwitchClick(scene.id, 3000);
       }, timeLeft);
       timeoutIds.push(timeoutId);
@@ -64,10 +51,10 @@ export function Scenes({ lights, updateLight }) {
   }, [scenes, onColorSwitchClick]);
 
   return (
-    <div className="scene-section">
-      <div className="card">
-        <div className="card-body d-flex justify-content-around">
-          {scenes.map((scene) => (
+    <div className="card">
+      <div className="card-body">
+        <div className="mx-n1 d-flex justify-content-between">
+          {scenes.map((scene, i) => (
             <SceneButton
               key={scene.id}
               name={scene.name}
@@ -94,11 +81,7 @@ export function ScenesSettings() {
 
     scene.schedule.time = time;
 
-    saveScenes([
-      ...scenes.slice(0, index),
-      Object.assign({}, scenes[index], scene),
-      ...scenes.slice(index + 1),
-    ]);
+    saveScenes([...scenes.slice(0, index), Object.assign({}, scenes[index], scene), ...scenes.slice(index + 1)]);
   }
 
   return scenes.map((scene) => (

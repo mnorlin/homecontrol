@@ -1,27 +1,16 @@
 import React from "react";
 
-export default function TimeInput({
-  name,
-  icon,
-  value,
-  onChange,
-  actionButton,
-}) {
+export default function TimeInput({ name, icon, value, onChange, actionButton }) {
   const title = icon ? (
-    <img src={`/state_icons/${icon}`} alt={name} />
+    <img className="rounded-start" style={{ width: "2.5rem" }} src={`/state_icons/${icon}`} alt={name} />
   ) : (
     <span className="input-group-text">{name}</span>
   );
 
   return (
-    <div className="input-group input-group-sm">
+    <div className="mb-3 input-group input-group-sm">
       {title}
-      <input
-        onChange={onChange}
-        type="time"
-        className="form-control"
-        value={value || ""}
-      />
+      <input onChange={onChange} type="time" className="form-control" value={value || ""} />
       {actionButton}
     </div>
   );

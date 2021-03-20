@@ -1,5 +1,6 @@
 import React from "react";
-import t from "../utils/translate";
+import t from "utils/translate";
+import { ButtonGroup, Button } from "react-bootstrap-v5";
 
 export default function ButtonSection({ lights, updateLight }) {
   function turnOnAll() {
@@ -17,24 +18,19 @@ export default function ButtonSection({ lights, updateLight }) {
   const isLoaded = lights.length > 0;
 
   return (
-    <div className="button-section d-flex">
-      <div className="btn-group my-3 mx-auto">
-        <button
-          disabled={!isLoaded}
-          onClick={turnOnAll}
-          className="btn btn-lg btn-light"
-        >
+    <div className="button-section my-3 text-center">
+      <ButtonGroup>
+        <Button size="lg" variant="secondary" disabled={!isLoaded} onClick={turnOnAll}>
+          <i className="bi bi-lightbulb-fill me-2"></i>
           {t("lights.turn-on-all")}
-        </button>
+        </Button>
 
-        <button
-          disabled={!isLoaded}
-          onClick={turnOffAll}
-          className="btn btn-lg btn-secondary"
-        >
+        <Button size="lg" variant="dark" disabled={!isLoaded} onClick={turnOffAll}>
+          <i className="bi bi-lightbulb-off-fill me-2"></i>
+
           {t("lights.turn-off-all")}
-        </button>
-      </div>
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }

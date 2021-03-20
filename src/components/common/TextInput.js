@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import FormFeedback from "./FormFeedback";
+import FormFeedback from "components/common/FormFeedback";
 import { v4 as uuidv4 } from "uuid";
 
-export default function TextInput({
-  name,
-  value,
-  onChange,
-  validator,
-  actionButton,
-}) {
+export default function TextInput({ name, value, onChange, validator, actionButton }) {
   const [feedback, setFeedback] = useState();
   const [validationId, setValidationId] = useState();
 
@@ -19,17 +13,11 @@ export default function TextInput({
   function onInput(e) {
     onChange(e);
 
-    setFeedback(
-      <FormFeedback id={validationId} validator={validator} node={e.target} />
-    );
+    setFeedback(<FormFeedback id={validationId} validator={validator} node={e.target} />);
   }
 
   return (
-    <div
-      className={`input-group input-group-sm ${
-        feedback ? "has-validation" : ""
-      }`}
-    >
+    <div className={`mb-3 input-group input-group-sm ${feedback ? "has-validation" : ""}`}>
       <span className="input-group-text">{name}</span>
       <input
         aria-describedby={feedback ? validationId : undefined}

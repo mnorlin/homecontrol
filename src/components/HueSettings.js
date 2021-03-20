@@ -1,7 +1,8 @@
 import React from "react";
-import TextInput from "./common/TextInput";
-import useStorage from "../hooks/useStorage";
-import t from "../utils/translate";
+import TextInput from "components/common/TextInput";
+import useStorage from "hooks/useStorage";
+import { Button } from "react-bootstrap-v5";
+import t from "utils/translate";
 
 const linkIcon = (
   <svg
@@ -35,19 +36,15 @@ export function HueSettings() {
   }
   return (
     <>
-      <TextInput
-        name={t("hue.ip")}
-        value={ip || ""}
-        onChange={(e) => saveIp(e.target.value)}
-      />
+      <TextInput name={t("hue.ip")} value={ip || ""} onChange={(e) => saveIp(e.target.value)} />
       <TextInput
         name={t("hue.api-key")}
         value={username || ""}
         onChange={(e) => saveUsername(e.target.value)}
         actionButton={
-          <button onClick={getNewToken} className="btn btn-outline-primary">
-            {linkIcon}
-          </button>
+          <Button onClick={getNewToken} variant="outline-primary">
+            <i className="bi bi-link"></i>
+          </Button>
         }
       />
       <small className="text-muted">

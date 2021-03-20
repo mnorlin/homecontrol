@@ -98,10 +98,8 @@ A line is drawn between each coordinate in the array. If you want to make space 
 
 ## Known issues
 
-1. **The turned off lights flicker when changing light scene** - Philips Hue can't change the color of a light when it is turned off, so to enable that all lights have the same state when turned on, they will briefly need to be turned on and off to get their new state.
+1. **The turned off lights flicker when changing light scene** - Philips Hue can't change the color of a light when it is turned off, so to enable that all lights have the same state when turned on, they will briefly need to be turned on and off to apply their new state.
 
 2. **The power consumption is just an estimate** - The estimate is based on the dimming percentage for the default light color for sultan, candle and light-strip models. If the model is of another type, it falls back to the sultan bulbs power consumption.
 
 3. **The power consumption is never zero** - This is not a bug. The Hue bridge draws power, as well as the lights, even when turned off, so it will never show 0 Watt.
-
-4. **Control section with light switches can't collapse** - This seems to be a bug in Bootstrap 5 alpha.

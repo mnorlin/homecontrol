@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { getRedPixelValue } from "./canvasUtils";
 import { adaptRooms } from "./roomUtils";
 import Room from "./Room";
-import createToast from "../../utils/createToast";
-import t from "../../utils/translate";
-import TextInput from "../common/TextInput";
-import NumberInput from "../common/NumberInput";
-import useStorage from "../../hooks/useStorage";
-import useRooms from "../../hooks/useRooms";
+import createToast from "utils/createToast";
+import t from "utils/translate";
+import TextInput from "components/common//TextInput";
+import NumberInput from "components/common//NumberInput";
+import useStorage from "hooks/useStorage";
+import useRooms from "hooks/useRooms";
 
 const CANVAS_WIDTH = 2000;
 const CANVAS_HEIGHT = 2000;
@@ -50,9 +50,7 @@ export function FloorPlan({ rooms, updateLight }) {
     <Room
       key={room.id}
       id={room.id}
-      walls={
-        adaptedRoomWalls.find((roomParams) => roomParams.id === room.id).walls
-      }
+      walls={adaptedRoomWalls.find((roomParams) => roomParams.id === room.id).walls}
       lights={room.lights}
       visualCanvas={FLOOR_PLAN}
       hitboxCanvas={FLOOR_PLAN_HITBOX}
@@ -76,18 +74,9 @@ export function FloorPlan({ rooms, updateLight }) {
           transform: rotation ? `rotate(${rotation}rad)` : undefined,
         }}
       >
-        <canvas
-          onClick={onHouseClick}
-          id={FLOOR_PLAN_HITBOX}
-          height={`${CANVAS_HEIGHT}`}
-          width={`${CANVAS_WIDTH}`}
-        />
+        <canvas onClick={onHouseClick} id={FLOOR_PLAN_HITBOX} height={`${CANVAS_HEIGHT}`} width={`${CANVAS_WIDTH}`} />
 
-        <canvas
-          id={FLOOR_PLAN}
-          height={`${CANVAS_HEIGHT}`}
-          width={`${CANVAS_WIDTH}`}
-        />
+        <canvas id={FLOOR_PLAN} height={`${CANVAS_HEIGHT}`} width={`${CANVAS_WIDTH}`} />
         {roomComponents}
       </div>
     </div>
@@ -175,9 +164,7 @@ export function FloorPlanSettings() {
         onChange={(e) => saveRotation((e.target.value / 360) * 2 * Math.PI)}
       />
       <hr />
-      <small className="text-muted mb-4 d-block">
-        {t("settings.floor-plan.instructions")}
-      </small>
+      <small className="text-muted mb-4 d-block">{t("settings.floor-plan.instructions")}</small>
       {rooms.map((room) => (
         <TextInput
           key={room.id}

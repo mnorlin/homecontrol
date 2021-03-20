@@ -1,6 +1,6 @@
 import { Toast } from "bootstrap";
 import { v4 as uuidv4 } from "uuid";
-import t from "../utils/translate";
+import t from "utils/translate";
 
 export default function createToast(type, message, delay = 10000) {
   addEventListener();
@@ -51,7 +51,7 @@ function addToDOM(type, message) {
   const title = t(`toast.title.${type}`);
 
   const toast = document.createElement("div");
-  toast.classList.add("toast");
+  toast.classList.add("toast", "mb-3");
   toast.setAttribute("role", "alert");
   toast.setAttribute("aria-live", "assertive");
   toast.setAttribute("aria-atomic", "true");

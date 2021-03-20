@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useStorage from "./useStorage";
-import createToast from "../utils/createToast";
-import t from "../utils/translate";
+import createToast from "utils/createToast";
+import t from "utils/translate";
 
 export default function useWeather(refreshRate) {
   const [city] = useStorage("weather-city");
@@ -21,46 +21,26 @@ export default function useWeather(refreshRate) {
     }, refreshRate);
 
     function fetchWeather() {
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?id=${city}&APPID=${key}`
-      )
+      fetch(`https://api.openweathermap.org/data/2.5/weather?id=${city}&APPID=${key}`)
         .then((response) => response.json())
         .then((data) => setWeatherNow(mapWeather(data)))
         .catch((error) =>
-          createToast(
-            "danger",
-            t("weather.error.connection").replace("{0}", error),
-            refreshRate - 1000
-          )
+          createToast("danger", t("weather.error.connection").replace("{0}", error), refreshRate - 1000)
         );
     }
 
     function fetchForecast() {
-      fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?id=${city}&APPID=${key}`
-      )
+      fetch(`https://api.openweathermap.org/data/2.5/forecast?id=${city}&APPID=${key}`)
         .then((response) => response.json())
-        .then((data) =>
-          setWeatherForecast(
-            data.list ? data.list.map((forecast) => mapWeather(forecast)) : {}
-          )
-        )
+        .then((data) => setWeatherForecast(data.list ? data.list.map((forecast) => mapWeather(forecast)) : {}))
         .catch((error) =>
-          createToast(
-            "danger",
-            t("weather.error.connection").replace("{0}", error),
-            refreshRate - 1000
-          )
+          createToast("danger", t("weather.error.connection").replace("{0}", error), refreshRate - 1000)
         );
     }
 
     function mapWeather(datapoint) {
       if (datapoint?.message) {
-        createToast(
-          "danger",
-          t("weather.error.service-message").replace("{0}", datapoint.message),
-          refreshRate - 1000
-        );
+        createToast("danger", t("weather.error.service-message").replace("{0}", datapoint.message), refreshRate - 1000);
         return {};
       }
       return {

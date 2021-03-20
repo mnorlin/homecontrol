@@ -1,4 +1,4 @@
-import translations from "../config/translations.js";
+import translations from "config/translations.js";
 
 export default function t(key) {
   const lang = navigator.language.toLowerCase();

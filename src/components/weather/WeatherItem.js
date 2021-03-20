@@ -2,10 +2,10 @@ import React from "react";
 
 export default function WeatherItem({ title, iconId, temp }) {
   return (
-    <>
-      <h1>{title}</h1>
-      <span className={`wi wi-owm-${iconId}`} />
+    <div className="d-flex flex-column">
+      <div className="text-muted">{title}</div>
+      <span className={`my-2 wi wi-owm-${iconId}`} />
       {temp}
-    </>
+    </div>
   );
 }

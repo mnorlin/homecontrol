@@ -1,5 +1,5 @@
 import React from "react";
-import t from "../../utils/translate";
+import t from "utils/translate";
 
 export default function FormFeedback({ id, validator, node }) {
   const errors = validateHtml(node);

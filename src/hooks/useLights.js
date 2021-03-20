@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from "react";
-import useStorage from "../hooks/useStorage";
-import createToast from "../utils/createToast";
-import t from "../utils/translate";
+import useStorage from "hooks/useStorage";
+import createToast from "utils/createToast";
+import t from "utils/translate";
 
 export default function useLights(refreshRate) {
   const [lights, setLights] = useReducer(reducer, []);
@@ -20,11 +20,7 @@ export default function useLights(refreshRate) {
         .then((response) => response.json())
         .then((lightStates) => setLights(lightStates))
         .catch((error) =>
-          createToast(
-            "danger",
-            t("hue.error.connect").replace("{0}", ip).replace("{1}", error),
-            refreshRate - 1000
-          )
+          createToast("danger", t("hue.error.connect").replace("{0}", ip).replace("{1}", error), refreshRate - 1000)
         );
     }
 
@@ -56,11 +52,7 @@ export default function useLights(refreshRate) {
   function reducer(oldState, newState) {
     if (newState.id) {
       const index = oldState.findIndex((light) => light.id === newState.id);
-      return [
-        ...oldState.slice(0, index),
-        Object.assign({}, oldState[index], newState),
-        ...oldState.slice(index + 1),
-      ];
+      return [...oldState.slice(0, index), Object.assign({}, oldState[index], newState), ...oldState.slice(index + 1)];
     } else {
       return mapLights(newState);
     }
@@ -71,10 +63,7 @@ export default function useLights(refreshRate) {
 
 function mapLights(newState) {
   if (newState?.[0]?.error !== undefined) {
-    createToast(
-      "danger",
-      t("hue.lights.error").replace("{0}", newState?.[0]?.error?.description)
-    );
+    createToast("danger", t("hue.lights.error").replace("{0}", newState?.[0]?.error?.description));
     return [];
   }
 

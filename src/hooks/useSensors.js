@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import useStorage from "../hooks/useStorage";
-import createToast from "../utils/createToast";
-import t from "../utils/translate";
+import useStorage from "./useStorage";
+import createToast from "utils/createToast";
+import t from "utils/translate";
 
 export default function useSensors(refreshRate) {
   const [sensors, setSensors] = useState([]);
@@ -21,23 +21,13 @@ export default function useSensors(refreshRate) {
         .then((response) => response.json())
         .then((data) => setSensors(mapSensor(data)))
         .catch((error) =>
-          createToast(
-            "danger",
-            t("hue.error.connect").replace("{0}", ip).replace("{1}", error),
-            15 * 1000
-          )
+          createToast("danger", t("hue.error.connect").replace("{0}", ip).replace("{1}", error), 15 * 1000)
         );
     }
 
     function mapSensor(sensors) {
       if (sensors?.[0]?.error !== undefined) {
-        createToast(
-          "danger",
-          t("hue.sensors.error").replace(
-            "{0}",
-            sensors?.[0]?.error?.description
-          )
-        );
+        createToast("danger", t("hue.sensors.error").replace("{0}", sensors?.[0]?.error?.description));
         return [];
       }
       return Object.entries(sensors).map(([id, sensor]) => ({
