@@ -70,8 +70,7 @@ export function FloorPlan({ rooms, updateLight }) {
       <div
         id={`${FLOOR_PLAN_WRAPPER}`}
         style={{
-          opacity: loaded ? "1" : "0.1",
-          height: `${CANVAS_HEIGHT}px`,
+          height: loaded ? `${CANVAS_HEIGHT}px` : "0px",
           width: `${CANVAS_WIDTH}px`,
           transform: rotation ? `rotate(${rotation}rad)` : undefined,
         }}
