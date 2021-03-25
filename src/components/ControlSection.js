@@ -25,7 +25,7 @@ export default function ControlSection({ rooms, updateLight, controlRef }) {
             {room.name}
             {getRoomTemp(room)
               ? getRoomTemp(room).map((info, index) => (
-                  <span key={index} className="ms-2 badge bg-secondary">
+                  <span key={index} className="ms-2 badge bg-light">
                     {info}
                   </span>
                 ))

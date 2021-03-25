@@ -34,7 +34,9 @@ export default function Settings({ children }) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button onClick={onClose}>{t("common.close")}</Button>
+          <Button variant="secondary" onClick={onClose}>
+            {t("common.close")}
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

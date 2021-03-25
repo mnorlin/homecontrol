@@ -170,7 +170,7 @@ export function FloorPlanSettings() {
         <TextInput
           key={room.id}
           name={room.name}
-          value={walls.find((w) => w.id === room.id)?.walls}
+          value={walls?.find((w) => w.id === room.id)?.walls}
           onChange={(e) => saveRoom(e, room.id)}
           validator={validator}
         />

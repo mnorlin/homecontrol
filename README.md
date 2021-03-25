@@ -1,4 +1,6 @@
-# Homecontrol
+<div align="center"><img width="200px" src="public/img/logo.svg" /></div>
+
+# Home Control
 
 Set up a dashboard to control your Philips Hue lights using an old tablet or phone. You get a simple weather forecast, scheduled light warmth, and you can control your lights through a floor map.
 

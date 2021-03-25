@@ -7,12 +7,19 @@ body {
   color: var(--text-muted-color, $text-muted) !important;
 }
 
+.bg-light {
+  background-color: var(--bg-light, $white) !important;
+  color: $dark;
+}
+
 .card {
   .card-header {
     background-color: var(--card-cap-bg, $card-cap-bg);
+    border-color: var(--card-border-color, $card-border-color);
   }
   background-color: var(--card-bg, $card-bg);
   color: var(--card-color, $card-color);
+  border-color: var(--card-border-color, $card-border-color);
 }
 
 .list-group-item {

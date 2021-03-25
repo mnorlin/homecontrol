@@ -42,7 +42,7 @@ export function HueSettings() {
         value={username || ""}
         onChange={(e) => saveUsername(e.target.value)}
         actionButton={
-          <Button onClick={getNewToken} variant="outline-primary">
+          <Button onClick={getNewToken} variant="secondary">
             <i className="bi bi-link"></i>
           </Button>
         }

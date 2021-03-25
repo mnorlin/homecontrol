@@ -1,11 +1,18 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 $body-bg: #e9ecef;
+$primary: #f9c100;
+
+$font-family-sans-serif: Helvetica, sans-serif;
+$font-weight-normal: 100;
+$font-weight-bold: 400;
 $enable-negative-margins: true;
 $border-radius: 0.5rem;
-$toast-border-color: rgba(black, 0.3);
-$modal-header-border-color: rgba(black, 0.3);
-$card-cap-bg: #f8f9fa;
+$card-cap-bg: #6c757d;
+$card-cap-color: #fff;
+$toast-border-color: transparent;
+$card-border-color: $body-bg;
+$modal-header-border-color: rgba(0, 0, 0, 0.3);
 
 @import "bootstrap/scss/bootstrap.scss";
 
@@ -20,10 +27,12 @@ $card-cap-bg: #f8f9fa;
     --body-bg: #{$gray-700};
     --body-color: #{$gray-200};
 
+    --bg-light: #{$gray-400};
     --text-muted-color: #{$gray-500};
 
     --card-bg: #{$gray-800};
     --card-cap-bg: #{$black};
+    --card-border-color: #{$gray-700};
 
     --popup-bg: #{$gray-800};
     --popup-content-bg: #{$gray-700};
@@ -37,7 +46,7 @@ $card-cap-bg: #f8f9fa;
     --input-border-color: #{$black};
     --input-group-bg: #{$gray-900};
 
-    --bs-primary: #055ebd;
+    --bs-primary: #e3b000;
     --bs-success: #006f1a;
     --bs-info: #01859d;
     --bs-warning: #9d7700;
