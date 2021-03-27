@@ -1,7 +1,7 @@
 import React from "react";
 import Loader from "components/common/Loader";
 import WeatherItem from "./WeatherItem";
-import TextInput from "components/common/TextInput";
+import Input from "components/common/Input";
 import SelectionInput from "components/common/SelectionInput";
 import useStorage from "hooks/useStorage";
 import t from "utils/translate";
@@ -55,8 +55,8 @@ export function WeatherSettings() {
         value={tempUnit}
         onChange={(e) => saveTempUnit(e.target.value)}
       />
-      <TextInput name={t("weather.city-id")} value={city} onChange={(e) => saveCity(e.target.value)} />
-      <TextInput name={t("weather.api-key")} value={key} onChange={(e) => saveKey(e.target.value)} />
+      <Input label={t("weather.city-id")} value={city} onChange={(e) => saveCity(e.target.value)} />
+      <Input label={t("weather.api-key")} value={key} onChange={(e) => saveKey(e.target.value)} />
       <div className="form-text">
         {t("weather.register").split("{0}")[0]}
         <a className="text-muted" rel="noopener noreferrer" target="_blank" href="https://openweathermap.org/api">

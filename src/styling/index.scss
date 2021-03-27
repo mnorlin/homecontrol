@@ -1,71 +1,109 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
-$body-bg: #e9ecef;
-$primary: #f9c100;
-
+/* Global theme settings */
 $font-family-sans-serif: Helvetica, sans-serif;
 $font-weight-normal: 100;
 $font-weight-bold: 400;
 $enable-negative-margins: true;
 $border-radius: 0.5rem;
-$card-cap-bg: #6c757d;
-$card-cap-color: #fff;
-$toast-border-color: transparent;
-$card-border-color: $body-bg;
-$modal-header-border-color: rgba(0, 0, 0, 0.3);
-
-@import "bootstrap/scss/bootstrap.scss";
+$form-switch-width: 1.73em;
+$homecontrol-yellow: #f9c100;
+$homecontrol-gray: #343a40;
 
 :root {
+  --bs-font-sans-serif: #{inspect($font-family-sans-serif)};
+}
+
+.theme-light {
+  $primary: $homecontrol-yellow;
+  $secondary: $homecontrol-gray;
+
+  $body-bg: #e9ecef;
+
+  $card-cap-bg: $secondary;
+  $card-cap-color: $body-bg;
+  $card-border-color: $body-bg;
+  $accordion-bg: white;
+
+  $link-color: $secondary;
+
+  @import "bootstrap/scss/bootstrap.scss";
+  @import "custom.scss";
+
   --floor-plan-active: #{$white};
   --floor-plan-inactive: #{$gray-300};
   --floor-plan-disabled: #{$red-100};
+
+  --scene-morning-gradient: rgb(30, 138, 200);
+  --scene-morning-bg: #34d1e8;
+
+  --scene-forenoon-gradient: #50bfd0;
+  --scene-forenoon-bg: #a6f3ff;
+
+  --scene-afternoon-gradient: #facd00;
+  --scene-afternoon-bg: #ffec47;
+
+  --scene-evening-gradient: #ff9600;
+  --scene-evening-bg: #ffcc00;
+
+  --scene-night-gradient: #000000;
+  --scene-night-bg: #ff6600;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --body-bg: #{$gray-700};
-    --body-color: #{$gray-200};
+.theme-dark {
+  $primary: $homecontrol-yellow;
+  $secondary: black;
 
-    --bg-light: #{$gray-400};
-    --text-muted-color: #{$gray-500};
+  $body-bg: $homecontrol-gray;
+  $body-color: #ced4da;
+  $text-muted: #adb5bd;
 
-    --card-bg: #{$gray-800};
-    --card-cap-bg: #{$black};
-    --card-border-color: #{$gray-700};
+  $card-bg: #212529;
+  $card-cap-bg: $secondary;
+  $card-cap-color: #ced4da;
+  $card-border-color: $body-bg;
+  $list-group-bg: $card-bg;
+  $list-group-color: $body-color;
+  $accordion-bg: $card-bg;
 
-    --popup-bg: #{$gray-800};
-    --popup-content-bg: #{$gray-700};
-    --popup-header-color: #{$gray-500};
+  $accordion-button-active-bg: $primary;
+  $accordion-button-active-bg: black;
+  $accordion-border-color: black;
 
-    --floor-plan-active: #{$gray-600};
-    --floor-plan-inactive: #{$gray-800};
-    --floor-plan-disabled: rgb(55, 43, 48);
+  $modal-content-bg: #212529;
+  $border-color: black;
+  $btn-close-color: $body-color;
 
-    --input-bg: #{$gray-700};
-    --input-border-color: #{$black};
-    --input-group-bg: #{$gray-900};
+  $input-bg: #343a40;
+  $input-border-color: black;
+  $input-group-addon-bg: black;
+  $form-switch-color: black;
+  $form-check-input-border: 1px solid black;
 
-    --bs-primary: #e3b000;
-    --bs-success: #006f1a;
-    --bs-info: #01859d;
-    --bs-warning: #9d7700;
-    --bs-danger: #a42a36;
+  $toast-background-color: $card-bg;
+  $toast-header-background-color: $card-cap-bg;
+  $toast-header-color: #ced4da;
+  $toast-border-color: $card-cap-bg;
 
-    --statebutton-opacity: 0.7;
-  }
+  @import "bootstrap/scss/bootstrap.scss";
+  @import "custom.scss";
+
+  --floor-plan-active: #{$gray-600};
+  --floor-plan-inactive: #{$gray-800};
+  --floor-plan-disabled: rgb(55, 43, 48);
+
+  --scene-morning-gradient: transparent;
+  --scene-morning-bg: #1d00fa;
+
+  --scene-forenoon-gradient: transparent;
+  --scene-forenoon-bg: #0089fa;
+
+  --scene-afternoon-gradient: transparent;
+  --scene-afternoon-bg: #{$homecontrol-yellow};
+
+  --scene-evening-gradient: transparent;
+  --scene-evening-bg: #fa6100;
+
+  --scene-night-gradient: transparent;
+  --scene-night-bg: #{$homecontrol-gray};
 }
-
-// React Bootstrap bug
-.close {
-  @extend .btn-close;
-  span:first-child {
-    display: none;
-  }
-}
-.sr-only {
-  @extend .visually-hidden;
-}
-
-@import "theme.scss";
-@import "custom.scss";

@@ -3,13 +3,15 @@ import useLights from "hooks/useLights";
 import useRooms from "hooks/useRooms";
 import useWeather from "hooks/useWeather";
 import useSensors from "hooks/useSensors";
+import useStorage from "hooks/useStorage";
 
 import { Collapse } from "react-bootstrap-v5";
 
 import Debug from "./Debug";
 import { Weather, WeatherSettings } from "components/weather/Weather";
 import { Scenes, ScenesSettings } from "components/scene/Scenes";
-import ControlSection from "components/ControlSection";
+import { ControlSection, ControlSectionSettings } from "components/ControlSection";
+import ThemeSettings, { setTheme } from "components/ThemeSettings";
 import SummarySection from "components/SummarySection";
 import { FloorPlan, FloorPlanSettings } from "components/floorplan/FloorPlan";
 import ButtonSection from "components/ButtonSection";
@@ -18,9 +20,12 @@ import Settings from "components/Settings";
 import t from "utils/translate";
 
 export default function App() {
-  const url = new URL(window.location.href);
+  const [theme] = useStorage("theme");
+  setTheme(theme);
 
   const [collapseState, setCollapseState] = useState(false);
+
+  const url = new URL(window.location.href);
 
   if (url.searchParams.get("reset")) {
     localStorage.clear();
@@ -31,6 +36,10 @@ export default function App() {
   const sensors = useSensors(1000 * 60); // Update every 1min
   const weatherProps = useWeather(1000 * 60 * 30); // Update every 30min
   const rooms = mapToRooms(useRooms(), lights, sensors);
+
+  const [ignoreList] = useStorage("lights-ignored", true);
+  const lightsIgnored = lights.filter((light) => !ignoreList.includes(light.id));
+  const roomsIgnored = mapToRooms(useRooms(), lightsIgnored, sensors);
 
   useEffect(() => {
     const hasFloorPlan = rooms.find((room) => room.walls?.length > 0);
@@ -44,7 +53,7 @@ export default function App() {
   return (
     <div className="container">
       <Weather {...weatherProps} />
-      <Scenes lights={lights} updateLight={updateLight} />
+      <Scenes lights={lightsIgnored} updateLight={updateLight} />
       <SummarySection
         lights={lights}
         sensors={sensors}
@@ -57,13 +66,15 @@ export default function App() {
           <ControlSection updateLight={updateLight} rooms={rooms} />
         </div>
       </Collapse>
-      <FloorPlan updateLight={updateLight} rooms={rooms} />
-      <ButtonSection lights={lights} updateLight={updateLight} />
+      <FloorPlan updateLight={updateLight} rooms={roomsIgnored} />
+      <ButtonSection lights={lightsIgnored} updateLight={updateLight} />
       <Settings>
-        <HueSettings title={t("settings.philips-hue")} />
         <WeatherSettings title={t("settings.weather")} />
+        <HueSettings title={t("settings.philips-hue")} />
+        <ControlSectionSettings rooms={rooms} title={t("settings.control-section")} />
         <ScenesSettings title={t("settings.scenes")} />
         <FloorPlanSettings title={t("settings.floor-plan")} />
+        <ThemeSettings title={t("settings.theme")} />
       </Settings>
     </div>
   );

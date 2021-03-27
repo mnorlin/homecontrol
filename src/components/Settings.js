@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import MenuGroup from "components/common/MenuGroup";
-import { Modal, Button } from "react-bootstrap-v5";
+import { Modal, Button, Accordion } from "react-bootstrap-v5";
+import { DownloadButton, Import } from "hooks/useStorage";
 import t from "utils/translate";
 
 export default function Settings({ children }) {
   const [show, setShow] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
 
   function onClose() {
     window.location.reload();
@@ -27,13 +29,20 @@ export default function Settings({ children }) {
 
         <Modal.Body>
           <form noValidate className="my-4">
-            {React.Children.map(children, (child) => (
-              <MenuGroup groupName={child.props.title}>{child}</MenuGroup>
-            ))}
+            <Accordion onSelect={(e) => setSelectedId(e)}>
+              {React.Children.map(children, (child) => (
+                <MenuGroup groupName={child.props.title} selectedId={selectedId} id={child.props.title}>
+                  {child}
+                </MenuGroup>
+              ))}
+            </Accordion>
           </form>
+          <Import />
         </Modal.Body>
 
-        <Modal.Footer>
+        <Modal.Footer className="d-flex justify-content-between">
+          <DownloadButton variant="link">{t("settings.export")}</DownloadButton>
+
           <Button variant="secondary" onClick={onClose}>
             {t("common.close")}
           </Button>

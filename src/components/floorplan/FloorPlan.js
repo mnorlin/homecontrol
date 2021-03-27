@@ -5,8 +5,7 @@ import Room from "./Room";
 import createToast from "utils/createToast";
 import t from "utils/translate";
 import { getRedIn8bit } from "utils/colorUtils";
-import TextInput from "components/common//TextInput";
-import NumberInput from "components/common//NumberInput";
+import Input from "components/common/Input";
 import useStorage from "hooks/useStorage";
 import useRooms from "hooks/useRooms";
 
@@ -70,9 +69,10 @@ export function FloorPlan({ rooms, updateLight }) {
       <div
         id={`${FLOOR_PLAN_WRAPPER}`}
         style={{
-          height: loaded ? `${CANVAS_HEIGHT}px` : "0px",
+          height: `${CANVAS_HEIGHT}px`,
+          display: loaded ? "block" : "none",
           width: `${CANVAS_WIDTH}px`,
-          transform: rotation ? `rotate(${rotation}rad)` : undefined,
+          transform: rotation ? `rotate(${rotation}deg)` : undefined,
         }}
       >
         <canvas onClick={onHouseClick} id={FLOOR_PLAN_HITBOX} height={`${CANVAS_HEIGHT}`} width={`${CANVAS_WIDTH}`} />
@@ -86,95 +86,90 @@ export function FloorPlan({ rooms, updateLight }) {
 
 export function FloorPlanSettings() {
   const rooms = useRooms();
+  const [walls, setWalls] = useState([]);
 
-  const [rotation, saveRotation] = useStorage("floor-plan-rotation");
+  const [rotation, saveRotation, updateRotation] = useStorage("floor-plan-rotation");
 
   const [floorPlan, saveFloorPlan] = useStorage("floor-plan", true);
-  const [walls, setWalls] = useState();
 
   useEffect(() => {
-    const walls = rooms.map((room) => ({
-      id: room.id,
-      walls: JSON.stringify(floorPlan.find((f) => f.id === room.id)?.walls),
-    }));
-
-    setWalls(walls);
-  }, [rooms, floorPlan]);
+    const tmp = [];
+    floorPlan.map((r) => {
+      tmp.push({ id: r.id, walls: JSON.stringify(r.walls) });
+    });
+    setWalls(tmp);
+  }, [floorPlan]);
 
   if (!rooms) {
     return <></>;
   }
 
-  function saveRoom(e, id) {
-    if (!e.target.value || !validator(e.target.value)) {
-      const index = floorPlan.findIndex((room) => room.id === id);
+  function saveRoom(e, id, fnc, parseJson) {
+    const index = floorPlan.findIndex((room) => room.id === id);
 
-      saveFloorPlan([
-        ...floorPlan.slice(0, index),
-        Object.assign({}, floorPlan[index], {
-          id,
-          walls: e.target.value ? JSON.parse(e.target.value) : undefined,
-        }),
-        ...floorPlan.slice(index + 1),
-      ]);
-    }
+    const data = e.target.value && parseJson ? JSON.parse(e.target.value) : e.target.value;
 
-    const index = walls.findIndex((room) => room.id === id);
-
-    setWalls([
-      ...walls.slice(0, index),
-      Object.assign({}, walls[index], { id, walls: e.target.value }),
-      ...walls.slice(index + 1),
+    fnc([
+      ...floorPlan.slice(0, index),
+      Object.assign({}, floorPlan[index], {
+        id,
+        walls: data,
+      }),
+      ...floorPlan.slice(index + 1),
     ]);
   }
 
-  function validator(value) {
+  async function validator(e) {
     let data;
     try {
-      data = JSON.parse(value);
+      data = JSON.parse(e.target.value);
     } catch {
-      return "not-json";
+      return ["not-json"];
     }
 
     if (!Array.isArray(data)) {
-      return "not-array";
+      return ["not-array"];
     }
 
     if (data.length === 0) {
-      return "no-coordinates";
+      return ["no-coordinates"];
     }
 
     for (const coordinate of data) {
       if (coordinate.x === undefined || coordinate.y === undefined) {
-        return "no-coordinates";
+        return ["no-coordinates"];
       }
 
       if (isNaN(coordinate.x) || isNaN(coordinate.y)) {
-        return "coordinate-not-number";
+        return ["coordinate-not-number"];
       }
     }
-  }
 
+    return [];
+  }
   return (
     <>
-      <NumberInput
-        name={t("settings.floor-plan.rotation")}
-        value={Math.round((rotation / (2 * Math.PI)) * 360 || 0).toString()}
+      <Input
+        label={t("settings.floor-plan.rotation")}
+        value={rotation}
+        type="number"
         min={0}
         max={360}
-        onChange={(e) => saveRotation((e.target.value / 360) * 2 * Math.PI)}
+        onChange={(e) => updateRotation(e.target.value)}
+        onValid={(e) => saveRotation(e.target.value)}
       />
       <hr />
-      <small className="text-muted mb-4 d-block">{t("settings.floor-plan.instructions")}</small>
       {rooms.map((room) => (
-        <TextInput
+        <Input
           key={room.id}
-          name={room.name}
-          value={walls?.find((w) => w.id === room.id)?.walls}
-          onChange={(e) => saveRoom(e, room.id)}
+          label={room.name}
+          value={walls?.find((r) => r.id === room.id)?.walls}
+          onChange={(e) => saveRoom(e, room.id, setWalls, false)}
+          onValid={(e) => saveRoom(e, room.id, saveFloorPlan, true)}
           validator={validator}
         />
       ))}
+      <small className="text-muted d-block">{t("settings.floor-plan.instructions")}</small>
     </>
   );
 }

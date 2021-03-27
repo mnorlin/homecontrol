@@ -7,6 +7,30 @@
   font-size: 1.5rem;
 }
 
+/* Bootstrap fixes */
+.modal-content {
+  background-color: $modal-content-bg;
+}
+
+.modal-body {
+  background-color: $body-bg;
+}
+
+.toast {
+  backdrop-filter: blur(5px);
+}
+
+// TOOD: React Bootstrap v5 bugs
+.close {
+  @extend .btn-close;
+  span:first-child {
+    display: none;
+  }
+}
+.sr-only {
+  @extend .visually-hidden;
+}
+
 /* Floor plan */
 #floor-plan-wrapper {
   position: relative;
@@ -38,6 +62,7 @@
   max-width: 100%;
 }
 
+/* Popup-messages */
 #toast-section {
   position: absolute;
   top: 1em;
@@ -52,47 +77,4 @@
     width: 20px;
     height: 20px;
   }
-}
-
-/* Forms */
-.form-control {
-  background-color: var(--input-bg, $input-bg);
-  color: var(--body-color, $body-color);
-  border-color: var(--input-border-color, $input-border-color);
-
-  &:focus {
-    background-color: var(--input-bg, $input-bg);
-    color: var(--body-color, $body-color);
-  }
-}
-
-.input-group-text {
-  background-color: var(--input-group-bg, $input-group-addon-bg);
-  color: var(--body-color, $input-group-addon-color);
-  border-color: var(--input-border-color, $input-group-addon-border-color);
-}
-.form-check-input:checked {
-  background-color: var(--bs-primary);
-}
-
-.form-control.is-valid {
-  border-color: var(--bs-success);
-
-  &:focus {
-    border-color: var(--bs-success);
-    box-shadow: 0 0 0 0.25rem rgba(#006f1a, 0.25);
-  }
-}
-
-.form-control.is-invalid {
-  border-color: var(--bs-danger);
-
-  &:focus {
-    border-color: var(--bs-danger);
-    box-shadow: 0 0 0 0.25rem rgba(#a42a36, 0.25);
-  }
-}
-
-.invalid-tooltip {
-  background-color: var(--bs-danger);
 }

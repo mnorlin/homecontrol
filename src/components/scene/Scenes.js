@@ -5,7 +5,8 @@ import createToast from "utils/createToast";
 import t from "utils/translate";
 import { normalizeToBulb } from "utils/colorUtils";
 import defaultStates from "config/scenes";
-import TimeInput from "components/common/TimeInput";
+import Input from "components/common/Input";
+import SceneIcon from "./SceneIcon";
 
 export function Scenes({ lights, updateLight }) {
   const [scenes, saveScenes] = useStorage("hue-scenes", true);
@@ -85,10 +86,16 @@ export function ScenesSettings() {
   }
 
   return scenes.map((scene) => (
-    <TimeInput
+    <Input
       key={scene.id}
-      name={t(scene.name)}
-      icon={scene.icon}
+      icon={
+        <SceneIcon
+          className="rounded-1"
+          style={{ width: "2.5rem", height: "2.5rem" }}
+          icon={scene.icon}
+          alt={t(scene.name)}
+        />
+      }
       value={scene.schedule.time}
       onChange={(e) => saveSceneSchedule(scene.id, e.target.value)}
     />

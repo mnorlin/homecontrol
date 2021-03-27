@@ -1,49 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import t from "utils/translate";
 
-export default function FormFeedback({ id, validator, node }) {
-  const errors = validateHtml(node);
+// TODO: useRef instead of classList
+export default function FormFeedback({ id, validator, event, onValid }) {
+  const [errors, setErrors] = useState();
 
-  let custom = [];
-  if (node.value) {
-    custom = validateCustom(node.value, validator);
+  function validate(e, validator = async () => []) {
+    const htmlErrors = validateHtml(e);
+    validator(e)
+      .then((response) => {
+        setErrors({ custom: response, html: htmlErrors });
+      })
+      .catch((unexpectedError) => {
+        setErrors({ html: htmlErrors, custom: unexpectedError });
+      });
   }
 
-  if (errors.length + custom.length === 0) {
-    node.classList.add("is-valid");
-    node.classList.remove("is-invalid");
+  useEffect(() => {
+    if (event) {
+      validate(event, validator);
+    }
+  }, [event]); // eslint-disable-line
+
+  console.log(errors?.html, errors?.custom);
+
+  if (!errors) {
+    return null;
+  }
+
+  let displayClass = "d-none"; // TODO: Make bootstrap do this, bug in beta3?
+  if (errors.html.length + errors.custom.length === 0) {
+    event.target.classList.add("is-valid");
+    event.target.classList.remove("is-invalid");
+    onValid?.(event);
   } else {
-    node.classList.remove("is-valid");
-    node.classList.add("is-invalid");
+    event.target.classList.remove("is-valid");
+    event.target.classList.add("is-invalid");
+    displayClass = "d-block";
   }
 
   return (
-    <div id={id} className="invalid-tooltip">
-      {errors.map((error) => (
+    <div id={id} className={`invalid-tooltip ${displayClass}`}>
+      {errors.html.map((error) => (
         <div key={error}>{t(`form.error.html.${error}`)}</div>
       ))}
-      {custom.map((error) => (
+      {errors.custom.map((error) => (
         <div key={error}>{t(`form.error.custom.${error}`)}</div>
       ))}
     </div>
   );
 }
 
-function validateCustom(value, validator = () => []) {
-  const errors = validator(value) || [];
-
-  return Array.isArray(errors) ? errors : [errors];
-}
-
-function validateHtml(node) {
+function validateHtml(e) {
   const errors = [];
-  const validity = node.validity;
+  const validity = e.target.validity;
 
   for (let type in validity) {
     if (validity[type] && type !== "valid") {
       errors.push(type);
     }
   }
-
   return errors;
 }

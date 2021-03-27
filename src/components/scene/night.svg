@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="190" height="190" viewBox="0 0 190 190">
+  <defs id="stateNightDef">
+    <linearGradient id="stateNightGrad1">
+      <stop style="stop-color:var(--scene-night-gradient);stop-opacity:1;" offset="0" id="stop4159" />
+      <stop style="stop-color:var(--scene-night-gradient);stop-opacity:0;" offset="1" id="stop4161" />
+    </linearGradient>
+    <linearGradient xlink:href="#stateNightGrad1" id="stateNightGrad2" x1="0" y1="0" x2="190" y2="190" gradientUnits="userSpaceOnUse" />
+  </defs>
+  
+  <rect style="opacity:1;fill:var(--scene-night-bg);fill-opacity:1;stroke:none;stroke-width:22.74799919;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect4869" width="190" height="190" x="0" y="0" />
+  
+  <rect style="display:inline;opacity:1;fill:url(#stateNightGrad2);fill-opacity:1;stroke:none;stroke-width:22.74799919;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect4869-9" width="190" height="190" x="0" y="1.9073486e-006" />
+  
+  <rect style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:7;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10.19999981;stroke-dasharray:none;stroke-opacity:1" id="rect4146" width="150" height="6" x="20" y="164" />
+  <circle style="display:inline;opacity:1;fill:#ffffff;fill-opacity:0.11498258;stroke:#ffffff;stroke-width:0;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10.19999981;stroke-dasharray:none;stroke-opacity:1" id="path4506-7" cx="95" cy="72.5" r="37.499996" />
+  <path style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10.19999981;stroke-dasharray:none;stroke-opacity:1" d="m 95.001037,35.000449 a 37.499996,37.499996 0 0 0 -0.954958,0.0328 36.864395,36.864395 0 0 1 31.306441,36.39955 36.864395,36.864395 0 0 1 -36.864397,36.864411 36.864395,36.864395 0 0 1 -6.192067,-0.56337 37.499996,37.499996 0 0 0 12.704981,2.26613 37.499996,37.499996 0 0 0 37.498513,-37.501051 37.499996,37.499996 0 0 0 -37.498513,-37.49851 z" id="path4506-7-6" />
+</svg>
