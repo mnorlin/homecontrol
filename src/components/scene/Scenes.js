@@ -4,6 +4,7 @@ import useStorage from "hooks/useStorage";
 import createToast from "utils/createToast";
 import t from "utils/translate";
 import { normalizeToBulb } from "utils/colorUtils";
+import { getTimeUntilHour } from "utils/timeUtils";
 import defaultStates from "config/scenes";
 import Input from "components/common/Input";
 import SceneIcon from "./SceneIcon";
@@ -11,9 +12,11 @@ import SceneIcon from "./SceneIcon";
 export function Scenes({ lights, updateLight }) {
   const [scenes, saveScenes] = useStorage("hue-scenes", true);
 
-  if (scenes.length === 0) {
-    saveScenes(defaultStates);
-  }
+  useEffect(() => {
+    if (scenes.length === 0) {
+      saveScenes(defaultStates);
+    }
+  }, [scenes]); // eslint-disable-line
 
   const onColorSwitchClick = useCallback(
     (sceneId, transitiontime = 10) => {
@@ -53,10 +56,11 @@ export function Scenes({ lights, updateLight }) {
 
   return (
     <div className="card">
-      <div className="card-body">
-        <div className="mx-n1 d-flex justify-content-between">
+      <div className="card-body p-3">
+        <div className="btn-group">
           {scenes.map((scene, i) => (
             <SceneButton
+              disabled={lights.length === 0}
               key={scene.id}
               name={scene.name}
               icon={scene.icon}
@@ -100,16 +104,4 @@ export function ScenesSettings() {
       onChange={(e) => saveSceneSchedule(scene.id, e.target.value)}
     />
   ));
-}
-
-function getTimeUntilHour(time) {
-  const t = new Date();
-  t.setHours(time.split(":")[0]);
-  t.setMinutes(time.split(":")[1]);
-  t.setSeconds(0);
-  t.setMilliseconds(0);
-
-  const timeLeft = t.getTime() - new Date().getTime();
-
-  return timeLeft > 0 ? timeLeft : timeLeft + 1000 * 60 * 60 * 24; // If time has passed, add 1 day
 }

@@ -7,6 +7,12 @@
   font-size: 1.5rem;
 }
 
+.scene-button {
+  overflow: hidden;
+  margin: 0 !important;
+  border-width: 0 !important;
+}
+
 /* Bootstrap fixes */
 .modal-content {
   background-color: $modal-content-bg;

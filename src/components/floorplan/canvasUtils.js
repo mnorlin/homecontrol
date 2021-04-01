@@ -22,14 +22,10 @@ function getMousePos(e, canvasWrapper) {
 }
 
 function compensateRotation(mousePos, canvasWrapper) {
-  let angle = canvasWrapper.style.transform
-    ?.split("rotate(")?.[1]
-    ?.split("rad")?.[0];
+  let angle = canvasWrapper.style.transform?.split("rotate(")?.[1]?.split("deg")?.[0] / 360;
 
   if (angle === undefined) {
-    const matrixString = window
-      .getComputedStyle(canvasWrapper, null)
-      .getPropertyValue("transform");
+    const matrixString = window.getComputedStyle(canvasWrapper, null).getPropertyValue("transform");
 
     const ta = matrixString.split("(")[1].split(")")[0].split(", ");
 
@@ -44,10 +40,7 @@ function compensateRotation(mousePos, canvasWrapper) {
   const cx = canvasWrapper.getBoundingClientRect().width / 2;
   const cy = canvasWrapper.getBoundingClientRect().height / 2;
 
-  const positionArray = multiply(rotationMatrix, [
-    mousePos.x - cx,
-    mousePos.y - cy,
-  ]);
+  const positionArray = multiply(rotationMatrix, [mousePos.x - cx, mousePos.y - cy]);
 
   return {
     x: positionArray.get([0]) + canvasWrapper.clientWidth / 2,
@@ -56,8 +49,7 @@ function compensateRotation(mousePos, canvasWrapper) {
 }
 
 function compensateScaling(mousePos, canvasWrapper) {
-  const cssScaling =
-    canvasWrapper.style.width.replace("px", "") / canvasWrapper.clientWidth;
+  const cssScaling = canvasWrapper.style.width.replace("px", "") / canvasWrapper.clientWidth;
 
   return {
     x: cssScaling * parseInt(mousePos.x),

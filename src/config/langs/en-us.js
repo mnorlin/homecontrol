@@ -51,6 +51,8 @@ const enUs = [
     ["settings.theme.light", "Light"],
     ["settings.theme.dark", "Dark"],
     ["settings.theme.system", "System"],
+    ["settings.theme.night", "Dark theme during night"],
+
     ["settings.temp-unit", "Temperature unit"],
     ["settings.import", "Import settings"],
     ["settings.export", "export settings"],

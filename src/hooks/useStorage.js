@@ -26,6 +26,7 @@ export default function useStorage(name, isJson) {
   }
 
   function jsonReducer(oldValue, newValue) {
+    console.log(newValue);
     if (newValue === undefined || newValue === null) {
       localStorage.removeItem(name);
     } else {
@@ -34,7 +35,7 @@ export default function useStorage(name, isJson) {
     return newValue;
   }
 
-  return [value, saveValue, storedValue, updateValue];
+  return [value, saveValue, updateValue];
 }
 
 export function DownloadButton({ onClick, ...props }) {

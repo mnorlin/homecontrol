@@ -27,7 +27,7 @@ export function ControlSection({ rooms, updateLight, controlRef }) {
             {room.name}
             {getRoomTemp(room)
               ? getRoomTemp(room).map((info, index) => (
-                  <span key={index} className="ms-2 badge bg-light text-dark">
+                  <span key={index} className="ms-2 badge text-info border border-info">
                     {info}
                   </span>
                 ))
@@ -52,7 +52,7 @@ export function ControlSection({ rooms, updateLight, controlRef }) {
 }
 
 export function ControlSectionSettings({ rooms }) {
-  const [ignored, setIgnored] = useStorage("lights-ignored", true); // TODO: use this setting
+  const [ignored, setIgnored] = useStorage("lights-ignored", true);
 
   function updateIgnored(id, ignore) {
     console.log(id, ignore);

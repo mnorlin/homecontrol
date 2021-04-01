@@ -26,8 +26,8 @@ export default function SummarySection({ sensors, lights, onClickCallback }) {
   return (
     <div style={{ cursor: "pointer" }} onClick={onClickCallback}>
       <h1 className="h4 text-center mt-4 mb-0">
-        <span className="me-4 badge bg-secondary">{temperature}</span>
-        <span className="badge bg-secondary">{`${powerConsumption} W`}</span>
+        <span className="me-4 badge text-secondary border border-secondary">{temperature}</span>
+        <span className="badge text-secondary border border-secondary">{`${powerConsumption} W`}</span>
       </h1>
     </div>
   );

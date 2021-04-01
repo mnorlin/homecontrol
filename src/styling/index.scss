@@ -1,24 +1,36 @@
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+$hc-primary: #f9c100;
+$hc-secondary: #434343;
+
+$gray-1: #ffffff;
+$gray-2: #efefef;
+$gray-3: #bcbcbc; // light
+$gray-4: #808080;
+$gray-5: #434343; // dark
+$gray-6: #222222;
+$gray-7: black;
+
 /* Global theme settings */
 $font-family-sans-serif: Helvetica, sans-serif;
 $font-weight-normal: 100;
 $font-weight-bold: 400;
-$enable-negative-margins: true;
-$border-radius: 0.5rem;
-$form-switch-width: 1.73em;
-$homecontrol-yellow: #f9c100;
-$homecontrol-gray: #343a40;
+$border-radius: 0.4rem;
+
+$form-check-input-border: 1px solid $gray-3;
+$form-check-input-width: 1.2em;
+$form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel width
 
 :root {
   --bs-font-sans-serif: #{inspect($font-family-sans-serif)};
 }
 
 .theme-light {
-  $primary: $homecontrol-yellow;
-  $secondary: $homecontrol-gray;
+  $primary: $hc-primary;
+  $secondary: $hc-secondary;
+  $info: $gray-3;
 
-  $body-bg: #e9ecef;
+  $body-bg: $gray-2;
 
   $card-cap-bg: $secondary;
   $card-cap-color: $body-bg;
@@ -27,83 +39,88 @@ $homecontrol-gray: #343a40;
 
   $link-color: $secondary;
 
+  $input-group-addon-bg: $gray-2;
+  $form-check-input-checked-border-color: $gray-1;
+  $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3.2' fill='#{$gray-3}'/></svg>");
+  $form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3.2' fill='#{$gray-1}'/><circle r='2.4' fill='#{$gray-1}'/></svg>");
+
   @import "bootstrap/scss/bootstrap.scss";
   @import "custom.scss";
 
   --floor-plan-active: #{$white};
-  --floor-plan-inactive: #{$gray-300};
+  --floor-plan-inactive: #{$gray-3};
   --floor-plan-disabled: #{$red-100};
 
-  --scene-morning-gradient: rgb(30, 138, 200);
-  --scene-morning-bg: #34d1e8;
+  --scene-morning-gradient: transparent;
+  --scene-forenoon-gradient: transparent;
+  --scene-afternoon-gradient: transparent;
+  --scene-evening-gradient: transparent;
+  --scene-night-gradient: transparent;
 
-  --scene-forenoon-gradient: #50bfd0;
-  --scene-forenoon-bg: #a6f3ff;
-
-  --scene-afternoon-gradient: #facd00;
-  --scene-afternoon-bg: #ffec47;
-
-  --scene-evening-gradient: #ff9600;
-  --scene-evening-bg: #ffcc00;
-
-  --scene-night-gradient: #000000;
-  --scene-night-bg: #ff6600;
+  --scene-morning-bg: #0b5289;
+  --scene-forenoon-bg: #1d97d8;
+  --scene-afternoon-bg: #{$hc-primary};
+  --scene-evening-bg: #f25805;
+  --scene-night-bg: #{$hc-secondary};
 }
 
 .theme-dark {
-  $primary: $homecontrol-yellow;
-  $secondary: black;
+  $primary: $hc-primary;
+  $secondary: $gray-3;
+  //$info: #dd9eff;
+  $info: $gray-3;
 
-  $body-bg: $homecontrol-gray;
-  $body-color: #ced4da;
-  $text-muted: #adb5bd;
+  $body-bg: $gray-5;
+  $body-color: $gray-2;
+  $text-muted: $gray-3;
 
-  $card-bg: #212529;
-  $card-cap-bg: $secondary;
-  $card-cap-color: #ced4da;
+  $card-bg: $gray-6;
+  $card-color: $gray-3;
+  $card-cap-bg: $gray-7;
+  $card-cap-color: $gray-2;
   $card-border-color: $body-bg;
   $list-group-bg: $card-bg;
-  $list-group-color: $body-color;
+  $list-group-color: $gray-2;
+
   $accordion-bg: $card-bg;
-
   $accordion-button-active-bg: $primary;
-  $accordion-button-active-bg: black;
-  $accordion-border-color: black;
+  $accordion-button-active-bg: $gray-7;
+  $accordion-border-color: $gray-7;
 
-  $modal-content-bg: #212529;
+  $modal-content-bg: $gray-6;
+  $modal-backdrop-opacity: 0.8;
   $border-color: black;
   $btn-close-color: $body-color;
 
-  $input-bg: #343a40;
+  $input-bg: $gray-5;
   $input-border-color: black;
   $input-group-addon-bg: black;
-  $form-switch-color: black;
-  $form-check-input-border: 1px solid black;
+  $form-check-input-border: 1px solid $gray-4;
+  $form-check-input-checked-color: $gray-5;
+  $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2.4' fill='#{$gray-3}'/></svg>");
+  $form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3.2' fill='#{$gray-5}'/><circle r='2.4' fill='#{$gray-3}'/></svg>");
 
   $toast-background-color: $card-bg;
   $toast-header-background-color: $card-cap-bg;
-  $toast-header-color: #ced4da;
+  $toast-header-color: $gray-3;
   $toast-border-color: $card-cap-bg;
 
   @import "bootstrap/scss/bootstrap.scss";
   @import "custom.scss";
 
-  --floor-plan-active: #{$gray-600};
-  --floor-plan-inactive: #{$gray-800};
+  --floor-plan-active: #{$gray-3};
+  --floor-plan-inactive: #{$gray-4};
   --floor-plan-disabled: rgb(55, 43, 48);
 
   --scene-morning-gradient: transparent;
-  --scene-morning-bg: #1d00fa;
-
   --scene-forenoon-gradient: transparent;
-  --scene-forenoon-bg: #0089fa;
-
   --scene-afternoon-gradient: transparent;
-  --scene-afternoon-bg: #{$homecontrol-yellow};
-
   --scene-evening-gradient: transparent;
-  --scene-evening-bg: #fa6100;
-
   --scene-night-gradient: transparent;
-  --scene-night-bg: #{$homecontrol-gray};
+
+  --scene-morning-bg: #33658a;
+  --scene-forenoon-bg: #86bbd8;
+  --scene-afternoon-bg: #{$hc-primary};
+  --scene-evening-bg: #f26419;
+  --scene-night-bg: #{$hc-secondary};
 }

@@ -20,12 +20,12 @@ export default function ButtonSection({ lights, updateLight }) {
   return (
     <div className="button-section my-3 text-center">
       <ButtonGroup>
-        <Button size="lg" variant="secondary" disabled={!isLoaded} onClick={turnOnAll}>
+        <Button size="lg" variant="primary" disabled={!isLoaded} onClick={turnOnAll}>
           <i className="bi bi-lightbulb-fill me-2"></i>
           {t("lights.turn-on-all")}
         </Button>
 
-        <Button size="lg" variant="dark" disabled={!isLoaded} onClick={turnOffAll}>
+        <Button size="lg" variant="secondary" disabled={!isLoaded} onClick={turnOffAll}>
           <i className="bi bi-lightbulb-off-fill me-2"></i>
 
           {t("lights.turn-off-all")}

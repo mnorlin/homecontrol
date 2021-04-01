@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import useStorage from "hooks/useStorage";
 import t from "utils/translate";
+import { getTimeUntilHour } from "utils/timeUtils";
 
 const watcher = window.matchMedia("(prefers-color-scheme: dark)");
 
 export default function ThemeSettings({ rooms }) {
   const [theme, saveTheme] = useStorage("theme");
+  const setTheme = useTheme();
 
   useEffect(() => {
     setTheme(theme);
@@ -22,6 +24,7 @@ export default function ThemeSettings({ rooms }) {
       <ThemeSelector onChange={handleChange} selected={theme} id="light" name={t("settings.theme.light")} />
       <ThemeSelector onChange={handleChange} selected={theme} id="dark" name={t("settings.theme.dark")} />
       <ThemeSelector onChange={handleChange} selected={theme} id="system" name={t("settings.theme.system")} />
+      <ThemeSelector onChange={handleChange} selected={theme} id="night" name={t("settings.theme.night")} />
     </>
   );
 }
@@ -45,19 +48,29 @@ function ThemeSelector({ id, name, onChange, selected }) {
   );
 }
 
-export function setTheme(id) {
-  watcher.removeEventListener("change", onSchemeChange);
+export function useTheme() {
+  const [scenes] = useStorage("hue-scenes", true);
 
-  switch (id) {
-    case "light":
-      setLight();
-      break;
-    case "dark":
-      setDark();
-      break;
-    default:
-      setSystem();
-  }
+  return (id) => {
+    watcher.removeEventListener("change", onSchemeChange);
+
+    switch (id) {
+      case "light":
+        setLight();
+        break;
+      case "dark":
+        setDark();
+        break;
+      case "night":
+        setNight(
+          scenes.find((s) => s.name === "scene.name.night").schedule.time,
+          scenes.find((s) => s.name === "scene.name.morning").schedule.time
+        );
+        break;
+      default:
+        setSystem();
+    }
+  };
 }
 
 function setLight() {
@@ -68,6 +81,33 @@ function setLight() {
 function setDark() {
   document.documentElement.classList = "";
   document.documentElement.classList.add(`theme-dark`);
+}
+
+function setNight(timeStart, timeEnd) {
+  if (timeEnd && timeStart) {
+    const beginIn = getTimeUntilHour(timeStart);
+    const endIn = getTimeUntilHour(timeEnd);
+
+    /* 
+      No need to clear the timers, as every time the settings change,
+      we refresh the page, and setTheme() is only called
+      in App.js on first render.
+    */
+    setTimeout(() => {
+      setDark();
+      setInterval(() => {
+        setDark();
+      }, 1000 * 60 * 60 * 24);
+    }, beginIn);
+
+    setTimeout(() => {
+      setInterval(() => {
+        setLight();
+      }, 1000 * 60 * 60 * 24);
+
+      setLight();
+    }, endIn);
+  }
 }
 
 function setSystem() {

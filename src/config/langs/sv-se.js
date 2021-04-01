@@ -48,6 +48,8 @@ const svSe = [
     ["settings.theme.light", "Ljust"],
     ["settings.theme.dark", "Mörkt"],
     ["settings.theme.system", "System"],
+    ["settings.theme.night", "Mörkt tema under natten"],
+
     ["settings.temp-unit", "Temperaturenhet"],
     ["settings.import", "Importera inställningar"],
     ["settings.export", "Exportera inställningar"],

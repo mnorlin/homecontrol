@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import t from "utils/translate";
 
-// TODO: useRef instead of classList
 export default function FormFeedback({ id, validator, event, onValid }) {
   const [errors, setErrors] = useState();
 

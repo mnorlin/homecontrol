@@ -11,7 +11,7 @@ import Debug from "./Debug";
 import { Weather, WeatherSettings } from "components/weather/Weather";
 import { Scenes, ScenesSettings } from "components/scene/Scenes";
 import { ControlSection, ControlSectionSettings } from "components/ControlSection";
-import ThemeSettings, { setTheme } from "components/ThemeSettings";
+import ThemeSettings, { useTheme } from "components/ThemeSettings";
 import SummarySection from "components/SummarySection";
 import { FloorPlan, FloorPlanSettings } from "components/floorplan/FloorPlan";
 import ButtonSection from "components/ButtonSection";
@@ -21,7 +21,11 @@ import t from "utils/translate";
 
 export default function App() {
   const [theme] = useStorage("theme");
-  setTheme(theme);
+  const setTheme = useTheme();
+
+  useEffect(() => {
+    setTheme(theme);
+  }, [theme]); // eslint-disable-line
 
   const [collapseState, setCollapseState] = useState(false);
 
