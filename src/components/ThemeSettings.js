@@ -53,7 +53,7 @@ export function useTheme() {
   const [savedTheme] = useStorage("theme");
 
   return (theme = savedTheme) => {
-    watcher.removeEventListener("change", onSchemeChange);
+    watcher.removeEventListener?.("change", onSchemeChange); // Make it work in old browsers
 
     switch (theme) {
       case "light":
@@ -118,11 +118,11 @@ function setSystem() {
     setLight();
   }
 
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", (e) => {
     const newColorScheme = e.matches ? "dark" : "light";
   });
 
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", onSchemeChange);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", onSchemeChange);
 }
 
 function onSchemeChange(e) {
