@@ -94,6 +94,13 @@ function setNight(timeStart, timeEnd) {
       we refresh the page, and setTheme() is only called
       in App.js on first render.
     */
+
+    if (beginIn > endIn) {
+      setDark();
+    } else {
+      setLight();
+    }
+
     setTimeout(() => {
       setDark();
       setInterval(() => {
