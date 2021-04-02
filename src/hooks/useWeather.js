@@ -23,10 +23,7 @@ export default function useWeather(refreshRate) {
     function fetchWeather() {
       fetch(`https://api.openweathermap.org/data/2.5/weather?id=${city}&APPID=${key}`)
         .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setWeatherNow(mapWeather(data));
-        })
+        .then((data) => setWeatherNow(mapWeather(data)))
         .catch((error) =>
           createToast("danger", t("weather.error.connection").replace("{0}", error), refreshRate - 1000)
         );

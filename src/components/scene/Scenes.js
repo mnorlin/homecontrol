@@ -21,8 +21,8 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
   }
 
   const onColorSwitchClick = useCallback(
-    (sceneId, transitiontime = 10) => {
-      const newState = scenes.find((scene) => scene.id === sceneId).state;
+    (sceneName, transitiontime = 10) => {
+      const newState = scenes.find((scene) => scene.name === sceneName).state;
 
       lights.forEach((light) => {
         const transformedState = normalizeToBulb(light.model, newState.hue, newState.sat, newState.bri);
@@ -44,7 +44,7 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
 
       const timeoutId = setTimeout(() => {
         createToast("info", t("scenes.schedule.running").replace("{0}", t(scene.name)), 300 * 1000);
-        onColorSwitchClick(scene.id, 3000);
+        onColorSwitchClick(scene.name, 3000);
       }, timeLeft);
       timeoutIds.push(timeoutId);
     }
@@ -70,7 +70,7 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
               key={scene.name}
               name={scene.name}
               icon={scene.icon}
-              onClick={() => onColorSwitchClick(scene.id)}
+              onClick={() => onColorSwitchClick(scene.name)}
               style={{ fill: scene.color ? scene.color : `var(--scene-${scene.icon}-bg)` }}
             />
           ))}
@@ -88,8 +88,8 @@ export function ScenesSettings({ sunrise, sunset }) {
     return <></>;
   }
 
-  function saveSceneSchedule(id, time) {
-    const index = scenes.findIndex((scene) => scene.id === id);
+  function saveSceneSchedule(name, time) {
+    const index = scenes.findIndex((scene) => scene.name === name);
     const scene = scenes[index];
 
     scene.schedule.time = time;
@@ -102,7 +102,7 @@ export function ScenesSettings({ sunrise, sunset }) {
   const sceneInputs = scenes.map((scene, i) => (
     <Input
       disabled={scenesDaylight}
-      key={scene.id}
+      key={scene.name}
       icon={
         <SceneIcon
           className="rounded-1"
@@ -117,7 +117,7 @@ export function ScenesSettings({ sunrise, sunset }) {
         />
       }
       value={scenesDaylight ? daylightValues[i] : scene.schedule.time}
-      onChange={(e) => saveSceneSchedule(scene.id, e.target.value)}
+      onChange={(e) => saveSceneSchedule(scene.name, e.target.value)}
     />
   ));
 
