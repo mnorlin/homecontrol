@@ -3,6 +3,7 @@ import Input from "components/common/Input";
 import useStorage from "hooks/useStorage";
 import { Button } from "react-bootstrap-v5";
 import t from "utils/translate";
+import { Link } from "react-bootstrap-icons";
 
 export function HueSettings() {
   const [ip, saveIp] = useStorage("hue-ip");
@@ -29,12 +30,12 @@ export function HueSettings() {
         onChange={(e) => saveUsername(e.target.value)}
         actionButton={
           <Button onClick={getNewToken} variant="primary">
-            <i className="bi bi-link"></i>
+            <Link className="bi" />
           </Button>
         }
       />
       <small className="text-muted">
-        {`${t("hue.generate-key")} `} <i className="bi bi-link"></i>
+        {`${t("hue.generate-key")} `} <Link className="bi" />
       </small>
     </>
   );

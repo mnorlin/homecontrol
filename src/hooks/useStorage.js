@@ -1,6 +1,7 @@
 import React, { useReducer, useState, useEffect } from "react";
 import Input from "components/common/Input";
 import { Button } from "react-bootstrap-v5";
+import { CloudUpload } from "react-bootstrap-icons";
 import t from "utils/translate";
 
 export default function useStorage(name, isJson) {
@@ -48,7 +49,6 @@ export function DownloadButton({ onClick, ...props }) {
     const tmpNode = document.createElement("a");
     tmpNode.setAttribute("href", toSave);
     tmpNode.setAttribute("download", "home-control-data.json");
-    //document.body.appendChild(downloadAnchorNode); // needed?
     tmpNode.click();
     tmpNode.remove();
     onClick?.();
@@ -82,7 +82,12 @@ export function Import() {
       type="file"
       value={value}
       onChange={(e) => setValue(e.target.value)}
-      label={t("settings.import")}
+      label={
+        <>
+          <CloudUpload className="bi me-2" />
+          {t("settings.import")}
+        </>
+      }
       validator={validate}
       onValid={onValid}
     />

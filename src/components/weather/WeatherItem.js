@@ -1,10 +1,10 @@
 import React from "react";
-
-export default function WeatherItem({ title, iconId, temp }) {
+import WeatherIcon from "./WeatherIcon";
+export default function WeatherItem({ title, icon, temp }) {
   return (
     <div className="d-flex flex-column">
       <div className="text-muted">{title}</div>
-      <span className={`my-2 wi wi-owm-${iconId}`} />
+      <WeatherIcon icon={icon} className="my-2" />
       {temp}
     </div>
   );

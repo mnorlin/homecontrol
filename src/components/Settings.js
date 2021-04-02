@@ -3,6 +3,7 @@ import MenuGroup from "components/common/MenuGroup";
 import { Modal, Button, Accordion } from "react-bootstrap-v5";
 import { DownloadButton, Import } from "hooks/useStorage";
 import t from "utils/translate";
+import { Sliders, CloudDownload } from "react-bootstrap-icons";
 
 export default function Settings({ children }) {
   const [show, setShow] = useState(false);
@@ -18,7 +19,7 @@ export default function Settings({ children }) {
   return (
     <div className="text-center">
       <Button variant="link" onClick={handleShow}>
-        <i className="bi bi-sliders me-2"></i>
+        <Sliders className="bi me-2" />
         {t("common.settings")}
       </Button>
 
@@ -41,7 +42,10 @@ export default function Settings({ children }) {
         </Modal.Body>
 
         <Modal.Footer className="d-flex justify-content-between">
-          <DownloadButton variant="link">{t("settings.export")}</DownloadButton>
+          <DownloadButton variant="link">
+            <CloudDownload className="bi me-2" />
+            {t("settings.export")}
+          </DownloadButton>
 
           <Button variant="secondary" onClick={onClose}>
             {t("common.close")}

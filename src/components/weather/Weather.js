@@ -18,18 +18,14 @@ export function Weather({ weatherNow, weatherForecast }) {
   return (
     <div className="d-flex justify-content-between text-center py-3">
       <div>
-        <WeatherItem
-          title={t("weather.now")}
-          iconId={weatherNow.weatherId}
-          temp={weatherNow.temp + weatherNow.tempUnit}
-        />
+        <WeatherItem title={t("weather.now")} icon={weatherNow.icon} temp={weatherNow.temp + weatherNow.tempUnit} />
       </div>
 
       {weatherForecast.slice(0, 4).map((datapoint) => (
         <div key={datapoint.time}>
           <WeatherItem
             title={unixTimeToHour(datapoint.time)}
-            iconId={datapoint.weatherId}
+            icon={datapoint.icon}
             temp={datapoint.temp + weatherNow.tempUnit}
           />
         </div>
