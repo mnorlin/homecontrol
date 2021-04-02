@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./styling/index.scss";
+import "styling/index.scss";
 
 import App from "App";
 

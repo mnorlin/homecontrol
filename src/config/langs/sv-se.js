@@ -38,6 +38,7 @@ const svSe = [
     ["settings.control-section", "Ignorerade lampor"],
     ["settings.control-section.ignored.desc", "Exkludera 'lampor' som inte ska slås på/av när rum tänds/släcks."],
     ["settings.scenes", "Ljusschema"],
+    ["settings.scenes.automatic", "Följ dagsljuset"],
     ["settings.floor-plan", "Planlösning"],
     [
       "settings.floor-plan.instructions",

@@ -1,22 +1,24 @@
 import React, { useEffect, useCallback } from "react";
 import SceneButton from "./SceneButton";
 import useStorage from "hooks/useStorage";
+import useWeather from "hooks/useWeather";
 import createToast from "utils/createToast";
 import t from "utils/translate";
 import { normalizeToBulb } from "utils/colorUtils";
-import { getTimeUntilHour } from "utils/timeUtils";
-import defaultStates from "config/scenes";
+import { getTimeUntilHour, calculateSchedule } from "utils/timeUtils";
 import Input from "components/common/Input";
 import SceneIcon from "./SceneIcon";
+import SwitchInput from "components/common/SwitchInput";
 
-export function Scenes({ lights, updateLight }) {
-  const [scenes, saveScenes] = useStorage("hue-scenes", true);
+export function Scenes({ lights, updateLight, sunrise, sunset }) {
+  const [savedScenes] = useStorage("hue-scenes", true);
+  const [scenesDaylight] = useStorage("hue-scenes-daylight", true);
 
-  useEffect(() => {
-    if (scenes.length === 0) {
-      saveScenes(defaultStates);
-    }
-  }, [scenes]); // eslint-disable-line
+  let scenes = savedScenes;
+  if (scenesDaylight && sunrise && sunset) {
+    const newTimes = calculateSchedule(sunrise, sunset);
+    scenes = savedScenes.map((s, i) => Object.assign({}, s, { schedule: { time: newTimes[i] } }));
+  }
 
   const onColorSwitchClick = useCallback(
     (sceneId, transitiontime = 10) => {
@@ -34,11 +36,11 @@ export function Scenes({ lights, updateLight }) {
   useEffect(() => {
     const timeoutIds = [];
     for (const scene of scenes) {
-      if (!scene.schedule || !scene.schedule.time) {
+      if (!scene.schedule?.time) {
         break;
       }
-      const schedule = scene.schedule;
-      const timeLeft = getTimeUntilHour(schedule.time);
+
+      const timeLeft = getTimeUntilHour(scene.schedule.time);
 
       const timeoutId = setTimeout(() => {
         createToast("info", t("scenes.schedule.running").replace("{0}", t(scene.name)), 300 * 1000);
@@ -54,6 +56,10 @@ export function Scenes({ lights, updateLight }) {
     };
   }, [scenes, onColorSwitchClick]);
 
+  if (scenes.length === 0) {
+    return null;
+  }
+
   return (
     <div className="card">
       <div className="card-body p-3">
@@ -61,10 +67,11 @@ export function Scenes({ lights, updateLight }) {
           {scenes.map((scene, i) => (
             <SceneButton
               disabled={lights.length === 0}
-              key={scene.id}
+              key={scene.name}
               name={scene.name}
               icon={scene.icon}
               onClick={() => onColorSwitchClick(scene.id)}
+              style={{ fill: scene.color ? scene.color : `var(--scene-${scene.icon}-bg)` }}
             />
           ))}
         </div>
@@ -73,8 +80,9 @@ export function Scenes({ lights, updateLight }) {
   );
 }
 
-export function ScenesSettings() {
+export function ScenesSettings({ sunrise, sunset }) {
   const [scenes, saveScenes] = useStorage("hue-scenes", true);
+  const [scenesDaylight, saveScenesDaylight] = useStorage("hue-scenes-daylight", true);
 
   if (!scenes) {
     return <></>;
@@ -89,19 +97,39 @@ export function ScenesSettings() {
     saveScenes([...scenes.slice(0, index), Object.assign({}, scenes[index], scene), ...scenes.slice(index + 1)]);
   }
 
-  return scenes.map((scene) => (
+  const daylightValues = calculateSchedule(sunrise, sunset);
+
+  const sceneInputs = scenes.map((scene, i) => (
     <Input
+      disabled={scenesDaylight}
       key={scene.id}
       icon={
         <SceneIcon
           className="rounded-1"
-          style={{ width: "2.5rem", height: "2.5rem" }}
+          style={{
+            width: "2.5rem",
+            height: "2.5rem",
+            fill: scene.color ? scene.color : `var(--scene-${scene.icon}-bg)`,
+            color: "white",
+          }}
           icon={scene.icon}
           alt={t(scene.name)}
         />
       }
-      value={scene.schedule.time}
+      value={scenesDaylight ? daylightValues[i] : scene.schedule.time}
       onChange={(e) => saveSceneSchedule(scene.id, e.target.value)}
     />
   ));
+
+  return (
+    <>
+      <SwitchInput
+        name={t("settings.scenes.automatic")}
+        checked={scenesDaylight}
+        onChange={() => saveScenesDaylight(!scenesDaylight)}
+        className="my-3"
+      />
+      {sceneInputs}
+    </>
+  );
 }

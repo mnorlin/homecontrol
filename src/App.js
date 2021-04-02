@@ -19,22 +19,32 @@ import { HueSettings } from "components/HueSettings";
 import Settings from "components/Settings";
 import t from "utils/translate";
 
+import defaultSettings from "default-settings.json";
+
 export default function App() {
-  const [theme] = useStorage("theme");
-  const setTheme = useTheme();
-
-  useEffect(() => {
-    setTheme(theme);
-  }, [theme]); // eslint-disable-line
-
-  const [collapseState, setCollapseState] = useState(false);
-
   const url = new URL(window.location.href);
-
   if (url.searchParams.get("reset")) {
     localStorage.clear();
     window.location.href = window.location.href.split("?")[0];
   }
+
+  const [hasSavedData, setHasSavedData] = useStorage("initiated");
+  useEffect(() => {
+    if (!hasSavedData) {
+      Object.entries(defaultSettings).forEach(([key, value]) => {
+        localStorage.setItem(key, typeof value === "object" ? JSON.stringify(value) : value);
+      });
+      setHasSavedData(true);
+      location.reload();
+    }
+  }, []); // eslint-disable-line
+
+  const setTheme = useTheme();
+  useEffect(() => {
+    setTheme();
+  }, []); // eslint-disable-line
+
+  const [collapseState, setCollapseState] = useState(false);
 
   const [lights, updateLight] = useLights(1000 * 10); // Update every 10sec
   const sensors = useSensors(1000 * 60); // Update every 1min
@@ -57,7 +67,12 @@ export default function App() {
   return (
     <div className="container">
       <Weather {...weatherProps} />
-      <Scenes lights={lightsIgnored} updateLight={updateLight} />
+      <Scenes
+        sunrise={weatherProps.weatherNow.sunrise}
+        sunset={weatherProps.weatherNow.sunset}
+        lights={lightsIgnored}
+        updateLight={updateLight}
+      />
       <SummarySection
         lights={lights}
         sensors={sensors}
@@ -76,7 +91,11 @@ export default function App() {
         <WeatherSettings title={t("settings.weather")} />
         <HueSettings title={t("settings.philips-hue")} />
         <ControlSectionSettings rooms={rooms} title={t("settings.control-section")} />
-        <ScenesSettings title={t("settings.scenes")} />
+        <ScenesSettings
+          sunrise={weatherProps.weatherNow.sunrise}
+          sunset={weatherProps.weatherNow.sunset}
+          title={t("settings.scenes")}
+        />
         <FloorPlanSettings title={t("settings.floor-plan")} />
         <ThemeSettings title={t("settings.theme")} />
       </Settings>

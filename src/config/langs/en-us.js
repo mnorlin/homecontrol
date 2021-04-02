@@ -41,6 +41,7 @@ const enUs = [
       "Exclude 'lights' that should not be turned on/off when rooms are turned on/off.",
     ],
     ["settings.scenes", "Light Schedule"],
+    ["settings.scenes.automatic", "Follow daylight"],
     ["settings.floor-plan", "Floor plan"],
     [
       "settings.floor-plan.instructions",

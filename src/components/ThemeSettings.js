@@ -50,11 +50,12 @@ function ThemeSelector({ id, name, onChange, selected }) {
 
 export function useTheme() {
   const [scenes] = useStorage("hue-scenes", true);
+  const [savedTheme] = useStorage("theme");
 
-  return (id) => {
+  return (theme = savedTheme) => {
     watcher.removeEventListener("change", onSchemeChange);
 
-    switch (id) {
+    switch (theme) {
       case "light":
         setLight();
         break;

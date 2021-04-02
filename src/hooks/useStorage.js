@@ -26,7 +26,6 @@ export default function useStorage(name, isJson) {
   }
 
   function jsonReducer(oldValue, newValue) {
-    console.log(newValue);
     if (newValue === undefined || newValue === null) {
       localStorage.removeItem(name);
     } else {
@@ -42,14 +41,14 @@ export function DownloadButton({ onClick, ...props }) {
   function download() {
     const data = {};
     Object.entries(localStorage).forEach(([key, value]) => {
-      data[key] = value;
+      data[key] = value.charAt(0) === "[" ? JSON.parse(value) : value;
     });
 
     const toSave = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
     const tmpNode = document.createElement("a");
     tmpNode.setAttribute("href", toSave);
     tmpNode.setAttribute("download", "home-control-data.json");
-    //document.body.appendChild(downloadAnchorNode); // required for firefox
+    //document.body.appendChild(downloadAnchorNode); // needed?
     tmpNode.click();
     tmpNode.remove();
     onClick?.();
@@ -73,7 +72,8 @@ export function Import() {
 
   function save(data) {
     Object.entries(data).forEach(([key, value]) => {
-      localStorage.setItem(key, value);
+      console.log("saving", key);
+      localStorage.setItem(key, typeof value === "object" ? JSON.stringify(value) : value);
     });
   }
 

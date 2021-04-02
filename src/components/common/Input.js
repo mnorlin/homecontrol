@@ -10,6 +10,7 @@ export default function Input({
   validator = async () => [],
   onValid,
   actionButton,
+  disabled,
   ...props
 }) {
   const [errors, setErrors] = useState({ custom: [], html: [] });
@@ -73,10 +74,17 @@ export default function Input({
   const prefix = icon ? icon : label ? <label className="input-group-text">{label}</label> : null;
 
   return (
-    <div className="position-relative mb-2">
+    <div className={`position-relative mb-2 ${disabled && "disabled"}`}>
       <div className={`input-group input-group-sm`}>
         {prefix}
-        <input ref={inputEl} onChange={onInput} className="form-control" value={value || ""} {...props} />
+        <input
+          disabled={disabled}
+          ref={inputEl}
+          onChange={onInput}
+          className="form-control"
+          value={value || ""}
+          {...props}
+        />
         {actionButton}
       </div>
       {feedback}

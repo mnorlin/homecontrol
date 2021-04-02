@@ -4,7 +4,7 @@
   "description": "Control your Philips Hue lights through a floor map.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#343A40",
+  "background_color": "#434343",
   "icons": [
     {
       "src": "img/icons/favicon.png",
@@ -30,6 +30,11 @@
       "src": "img/icons/icon_512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "img/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ]
 }

@@ -9,8 +9,16 @@
 
 .scene-button {
   overflow: hidden;
-  margin: 0 !important;
+
+  // Hack to fix spacing on iOS devices
+  margin-left: -1px !important;
   border-width: 0 !important;
+  color: white !important;
+  z-index: 0 !important;
+}
+
+.disabled {
+  opacity: 0.5;
 }
 
 /* Bootstrap fixes */

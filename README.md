@@ -1,4 +1,4 @@
-<div align="center"><img width="200px" src="public/img/logo.svg" /></div>
+<div align="center"><img width="200px" src="public/img/icons/icon.svg" /></div>
 
 # Home Control
 

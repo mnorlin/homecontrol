@@ -49,6 +49,8 @@ export default function useWeather(refreshRate) {
         temp: convertTemp(tempUnit, datapoint.main.temp).temp,
         tempUnit: convertTemp(tempUnit, datapoint.main.temp).unit,
         time: datapoint.dt,
+        sunrise: new Date(datapoint.sys.sunrise * 1000),
+        sunset: new Date(datapoint.sys.sunset * 1000),
       };
     }
 

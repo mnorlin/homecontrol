@@ -16,7 +16,7 @@ export function Weather({ weatherNow, weatherForecast }) {
   }
 
   return (
-    <div className="d-flex justify-content-between text-center p-3">
+    <div className="d-flex justify-content-between text-center py-3">
       <div>
         <WeatherItem
           title={t("weather.now")}
