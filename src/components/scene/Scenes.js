@@ -15,7 +15,7 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
   const [scenesDaylight] = useStorage("hue-scenes-daylight", true);
 
   let scenes = savedScenes;
-  if (scenesDaylight && sunrise && sunset) {
+  if (scenes.length === 5 && scenesDaylight) {
     const newTimes = calculateSchedule(sunrise, sunset);
     scenes = savedScenes.map((s, i) => Object.assign({}, s, { schedule: { time: newTimes[i] } }));
   }
