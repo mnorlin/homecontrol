@@ -47,7 +47,7 @@ export default function Settings({ children }) {
             {t("settings.export")}
           </DownloadButton>
 
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="outline-secondary" onClick={onClose}>
             {t("common.close")}
           </Button>
         </Modal.Footer>

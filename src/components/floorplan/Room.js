@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
+import { CANVAS_WIDTH, FLOOR_PLAN } from "./FloorPlan";
 
-export default function Room({
-  id,
-  walls,
-  lights,
-  visualCanvas,
-  hitboxCanvas,
-}) {
+export default function Room({ id, walls, lights, visualCanvas, hitboxCanvas }) {
   const [lightsOn, setLightsOn] = useState(false);
   const [reachable, setReachable] = useState(false);
 
@@ -30,6 +25,7 @@ export default function Room({
 
   // Draw on light change
   useEffect(() => {
+    const wallColor = getCssVariable("--floor-plan-wall");
     const roomActiveColor = getCssVariable("--floor-plan-active");
     const roomInactiveColor = getCssVariable("--floor-plan-inactive");
     const roomDisabledColor = getCssVariable("--floor-plan-disabled");
@@ -41,7 +37,8 @@ export default function Room({
       const canvas = document.getElementById(target);
       const ctx = canvas.getContext("2d");
 
-      ctx.lineWidth = 7;
+      ctx.lineWidth = strokeWidth();
+      ctx.strokeStyle = wallColor;
       ctx.lineCap = "round";
       ctx.fillStyle = fillStyle;
 
@@ -50,9 +47,7 @@ export default function Room({
       ctx.moveTo(boundries[0].x, boundries[0].y);
 
       boundries.forEach((point) => {
-        point.transparent && !fillStyle
-          ? ctx.moveTo(point.x, point.y)
-          : ctx.lineTo(point.x, point.y);
+        point.transparent && !fillStyle ? ctx.moveTo(point.x, point.y) : ctx.lineTo(point.x, point.y);
       });
 
       fillStyle ? ctx.fill() : ctx.stroke();
@@ -68,6 +63,13 @@ export default function Room({
   }, [id, walls, lightsOn, reachable, visualCanvas, hitboxCanvas]);
 
   return null;
+}
+
+function strokeWidth() {
+  const ratio = window.devicePixelRatio;
+  const scaledWidth = document.getElementById(FLOOR_PLAN).clientWidth;
+  console.log(scaledWidth);
+  return Math.round(CANVAS_WIDTH / scaledWidth);
 }
 
 function getCssVariable(name) {

@@ -9,12 +9,12 @@ import Input from "components/common/Input";
 import useStorage from "hooks/useStorage";
 import useRooms from "hooks/useRooms";
 
-const CANVAS_WIDTH = 2000;
-const CANVAS_HEIGHT = 2000;
+export const CANVAS_WIDTH = 2000;
+export const CANVAS_HEIGHT = 2000;
 
 const FLOOR_PLAN_WRAPPER = "floor-plan-wrapper";
 const FLOOR_PLAN_HITBOX = "floor-plan-hitbox";
-const FLOOR_PLAN = "floor-plan";
+export const FLOOR_PLAN = "floor-plan";
 
 export function FloorPlan({ rooms, updateLight }) {
   const [rotation] = useStorage("floor-plan-rotation");

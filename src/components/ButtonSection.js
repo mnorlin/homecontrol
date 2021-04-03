@@ -26,7 +26,7 @@ export default function ButtonSection({ lights, updateLight }) {
           {t("lights.turn-on-all")}
         </Button>
 
-        <Button size="lg" variant="secondary" disabled={!isLoaded} onClick={turnOffAll}>
+        <Button size="lg" variant="outline-secondary" disabled={!isLoaded} onClick={turnOffAll}>
           <LightbulbOffFill className="bi me-2" />
           {t("lights.turn-off-all")}
         </Button>

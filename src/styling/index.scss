@@ -27,8 +27,11 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   $primary: $hc-primary;
   $secondary: $hc-secondary;
   $info: $gray-3;
+  $black: $secondary;
 
   $body-bg: $gray-2;
+  $body-color: $secondary;
+  $text-muted: $gray-4;
 
   $card-cap-bg: $secondary;
   $card-cap-color: $body-bg;
@@ -45,6 +48,7 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   @import "bootstrap/scss/bootstrap.scss";
   @import "custom.scss";
 
+  --floor-plan-wall: #{$black};
   --floor-plan-active: #{$white};
   --floor-plan-inactive: #{$gray-3};
   --floor-plan-disabled: #{$red-100};
@@ -67,10 +71,11 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   $secondary: $gray-3;
   //$info: #dd9eff;
   $info: $gray-3;
+  $black: $gray-5;
 
   $body-bg: $gray-5;
-  $body-color: $gray-2;
-  $text-muted: $gray-3;
+  $body-color: $gray-3;
+  $text-muted: $gray-4;
 
   $card-bg: $gray-6;
   $card-color: $gray-3;
@@ -107,9 +112,10 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   @import "bootstrap/scss/bootstrap.scss";
   @import "custom.scss";
 
-  --floor-plan-active: #{$gray-3};
-  --floor-plan-inactive: #{$gray-4};
-  --floor-plan-disabled: rgb(55, 43, 48);
+  --floor-plan-wall: black;
+  --floor-plan-active: #{$gray-4};
+  --floor-plan-inactive: #{$gray-5};
+  --floor-plan-disabled: rgb(80, 43, 48);
 
   --scene-morning-gradient: transparent;
   --scene-forenoon-gradient: transparent;
