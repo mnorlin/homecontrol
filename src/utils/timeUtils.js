@@ -16,8 +16,6 @@ export function calculateSchedule(sunrise, sunset) {
   }
   const hours = [];
 
-  const middleOfDay = new Date(sunrise.getTime());
-
   const morningScene = sunrise.getTime() - 1000 * 60 * 30; // 30min before sunrise
   const forenoonScene = sunrise.getTime() + 1000 * 60 * 60 * 2; // 2h after sunrise
   const afternoonScene = sunrise.getTime() + (sunset.getTime() - sunrise.getTime()) / 2; // Middle of day

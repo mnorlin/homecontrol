@@ -3,7 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -13,6 +18,8 @@
   },
   "plugins": ["react", "react-hooks"],
   "rules": {
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "prettier/prettier": "warn",
+    "no-unused-vars": "warn"
   }
 }

@@ -5,19 +5,11 @@ export function adaptRooms(rooms, canvasWidth, canvasHeight) {
 }
 
 function scaleRooms(rooms, canvasWidth, canvasHeight) {
-  const maxX = Math.max(
-    ...rooms.map((room) => room.walls.map((point) => point.x)).flat()
-  );
-  const minX = Math.min(
-    ...rooms.map((room) => room.walls.map((point) => point.x)).flat()
-  );
+  const maxX = Math.max(...rooms.map((room) => room.walls.map((point) => point.x)).flat());
+  const minX = Math.min(...rooms.map((room) => room.walls.map((point) => point.x)).flat());
 
-  const maxY = Math.max(
-    ...rooms.map((room) => room.walls.map((point) => point.y)).flat()
-  );
-  const minY = Math.min(
-    ...rooms.map((room) => room.walls.map((point) => point.y)).flat()
-  );
+  const maxY = Math.max(...rooms.map((room) => room.walls.map((point) => point.y)).flat());
+  const minY = Math.min(...rooms.map((room) => room.walls.map((point) => point.y)).flat());
 
   const scaleX = canvasWidth / (maxX - minX);
   const scaleY = canvasHeight / (maxY - minY);
@@ -39,19 +31,11 @@ function scaleRooms(rooms, canvasWidth, canvasHeight) {
 }
 
 function centerRooms(rooms, canvasWidth, canvasHeight) {
-  const maxX = Math.max(
-    ...rooms.map((room) => room.walls.map((point) => point.x)).flat()
-  );
-  const minX = Math.min(
-    ...rooms.map((room) => room.walls.map((point) => point.x)).flat()
-  );
+  const maxX = Math.max(...rooms.map((room) => room.walls.map((point) => point.x)).flat());
+  const minX = Math.min(...rooms.map((room) => room.walls.map((point) => point.x)).flat());
 
-  const maxY = Math.max(
-    ...rooms.map((room) => room.walls.map((point) => point.y)).flat()
-  );
-  const minY = Math.min(
-    ...rooms.map((room) => room.walls.map((point) => point.y)).flat()
-  );
+  const maxY = Math.max(...rooms.map((room) => room.walls.map((point) => point.y)).flat());
+  const minY = Math.min(...rooms.map((room) => room.walls.map((point) => point.y)).flat());
 
   const offsetX = parseInt((canvasWidth - maxX - minX) / 2);
   const offsetY = parseInt((canvasHeight - maxY - minY) / 2);

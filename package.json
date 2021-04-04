@@ -1,6 +1,6 @@
 {
   "name": "homecontrol",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "private": true,
   "license": "GPL-3.0-only",
   "dependencies": {
@@ -16,12 +16,12 @@
   },
   "scripts": {
     "start": "PORT=3000 BROWSER=none react-scripts start",
-    "build": "react-scripts build && gulp",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build",
+    "release": "npm run build && gulp",
+    "lint": "eslint src/components/**"
   },
   "eslintConfig": {
     "extends": [
-      "eslint:recommended",
       "react-app"
     ]
   },
@@ -38,10 +38,12 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "gulp": "^4.0.2",
     "gulp-base64-inline": "^1.0.6",
     "gulp-inline-source": "^4.0.0",
-    "gulp-rename": "^2.0.0",
-    "gulp-replace": "^1.0.0"
+    "gulp-replace": "^1.0.0",
+    "prettier": "^2.2.1"
   }
 }

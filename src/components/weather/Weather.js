@@ -7,6 +7,12 @@ import useStorage from "hooks/useStorage";
 import t from "utils/translate";
 
 export function Weather({ weatherNow, weatherForecast }) {
+  const [city] = useStorage("weather-city");
+  const [key] = useStorage("weather-key");
+
+  if (!city || !key) {
+    return null;
+  }
   if (!(weatherNow.name && weatherForecast.length > 0)) {
     return (
       <div className="mt-3">
@@ -16,7 +22,7 @@ export function Weather({ weatherNow, weatherForecast }) {
   }
 
   return (
-    <div className="d-flex justify-content-between text-center py-3">
+    <div className="d-flex justify-content-between text-center mt-3">
       <div>
         <WeatherItem title={t("weather.now")} icon={weatherNow.icon} temp={weatherNow.temp + weatherNow.tempUnit} />
       </div>

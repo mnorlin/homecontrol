@@ -1,0 +1,69 @@
+{
+  "weather-city": "",
+  "weather-key": "",
+  "temp-unit": "c",
+  "hue-ip": "",
+  "hue-username": "",
+  "lights-ignored": [],
+  "floor-plan-rotation": "0",
+  "floor-plan": [
+    {
+      "id": "1",
+      "walls": [
+        { "x": 0, "y": 0 },
+        { "x": 8, "y": 0 },
+        { "x": 8, "y": 5 },
+        { "x": 8, "y": 7, "transparent": true },
+        { "x": 8, "y": 10 },
+        { "x": 0, "y": 10 },
+        { "x": 0, "y": 0 }
+      ]
+    },
+    {
+      "id": "2",
+      "walls": [
+        { "x": 8, "y": 0 },
+        { "x": 16, "y": 0 },
+        { "x": 16, "y": 7 },
+        { "x": 8, "y": 7 },
+        { "x": 8, "y": 5, "transparent": true },
+        { "x": 8, "y": 0 }
+      ]
+    }
+  ],
+  "hue-scenes-daylight": "true",
+  "hue-scenes": [
+    {
+      "name": "scene.name.morning",
+      "icon": "morning",
+      "state": { "bri": 254, "hue": 41432, "sat": 75 },
+      "schedule": { "time": "06:00" }
+    },
+    {
+      "name": "scene.name.forenoon",
+      "icon": "forenoon",
+      "state": { "bri": 254, "hue": 39391, "sat": 14 },
+      "schedule": { "time": "08:00" }
+    },
+    {
+      "name": "scene.name.afternoon",
+      "icon": "afternoon",
+      "state": { "bri": 254, "hue": 8595, "sat": 121 },
+      "schedule": { "time": "12:00" }
+    },
+    {
+      "name": "scene.name.evening",
+      "icon": "evening",
+      "state": { "bri": 254, "hue": 7688, "sat": 199 },
+      "schedule": { "time": "18:00" }
+    },
+    {
+      "name": "scene.name.night",
+      "icon": "night",
+      "color": "#434343",
+      "state": { "bri": 144, "hue": 7688, "sat": 199 },
+      "schedule": { "time": "21:00" }
+    }
+  ],
+  "theme": "system"
+}

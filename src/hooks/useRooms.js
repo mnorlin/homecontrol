@@ -28,7 +28,7 @@ function mapRooms(groups, settings) {
     return [];
   }
   return Object.entries(groups)
-    .filter(([id, group]) => group.type === "Room")
+    .filter(([id, group]) => group.type === "Room") // eslint-disable-line
     .map(([id, group]) => {
       const walls = settings?.find((room) => room.id === id)?.walls;
       return {

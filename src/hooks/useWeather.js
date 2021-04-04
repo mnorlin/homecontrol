@@ -12,12 +12,15 @@ export default function useWeather(refreshRate) {
   const [weatherForecast, setWeatherForecast] = useState([]);
 
   useEffect(() => {
-    fetchWeather();
-    fetchForecast();
-
-    const intervalId = setInterval(() => {
+    if (city && key) {
       fetchWeather();
       fetchForecast();
+    }
+    const intervalId = setInterval(() => {
+      if (city && key) {
+        fetchWeather();
+        fetchForecast();
+      }
     }, refreshRate);
 
     function fetchWeather() {

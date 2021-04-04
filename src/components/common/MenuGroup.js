@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Accordion, useAccordionToggle } from "react-bootstrap-v5";
+import { Accordion, useAccordionToggle } from "react-bootstrap-v5";
 
 // TODO: Cleanup when react-bootstrap has better Bootstrap 5 support
 export default function MenuGroup({ groupName, children, id, selectedId }) {

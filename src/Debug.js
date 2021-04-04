@@ -9,14 +9,15 @@ export default function Debug({ lights, sensors, rooms, weatherProps }) {
   const secrets = ["hue-username", "weather-city", "weather-key"];
   const config = {};
   Object.keys(localStorage).forEach(function (key) {
-    config[key] = secrets.includes(key) ? "*****" : localStorage.getItem(key);
+    const data = secrets.includes(key) ? "*****" : localStorage.getItem(key);
+    config[key] = data.charAt(0) === "[" ? JSON.parse(data) : data;
   });
 
   const data = {};
   data["lights"] = lights;
   data["sensors"] = sensors;
   data["rooms"] = rooms;
-  data["weatherProps"] = weatherProps;
+  data["weather"] = weatherProps;
 
   return (
     <div className="container">

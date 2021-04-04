@@ -44,7 +44,6 @@ export function HSLToRGB(h, s, l) {
 }
 
 export function getRedIn8bit(color) {
-  let offset = 0;
   if (color.includes("#")) {
     const redHex = color.trim().substring(1, 3);
     return parseInt(redHex, 16).toString();
@@ -55,12 +54,14 @@ export function getRedIn8bit(color) {
   }
 }
 
+/*
 export function bulbColor(hue, sat) {
   const hueDeg = (hue / 65535) * 360;
   //const satPercentage = (sat / 254) * 100;
 
   return `hsl(${hueDeg}, 100%, 50%)`;
 }
+*/
 
 export function bulbBrightnessColor(bri) {
   const briPercentage = (bri / 254) * 255;

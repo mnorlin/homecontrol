@@ -57,7 +57,6 @@ export function DownloadButton({ onClick, ...props }) {
 }
 
 export function Import() {
-  const [feedback, setFeedback] = useState(null);
   const [value, setValue] = useState(null);
 
   function onValid(e) {

@@ -4,7 +4,7 @@ import Loader from "components/common/Loader";
 import useStorage from "hooks/useStorage";
 import t from "utils/translate";
 
-export function ControlSection({ rooms, updateLight, controlRef }) {
+export function ControlSection({ rooms, updateLight }) {
   if (rooms.length === 0) {
     return (
       <div className="mt-4">
@@ -60,7 +60,7 @@ export function ControlSectionSettings({ rooms }) {
     ignore ? setIgnored(newIgnore.concat(id)) : setIgnored(newIgnore.filter((ignore) => ignore !== id));
   }
 
-  const switches = rooms.map((room, i) => (
+  const switches = rooms.map((room) => (
     <div key={room.id}>
       {room.lights.map((light) => (
         <div key={light.id} className="my-2">

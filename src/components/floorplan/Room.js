@@ -66,7 +66,6 @@ export default function Room({ id, walls, lights, visualCanvas, hitboxCanvas }) 
 }
 
 function strokeWidth() {
-  const ratio = window.devicePixelRatio;
   const scaledWidth = document.getElementById(FLOOR_PLAN).clientWidth;
   console.log(scaledWidth);
   return Math.round(CANVAS_WIDTH / scaledWidth);

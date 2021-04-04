@@ -28,13 +28,12 @@ export default function App() {
     window.location.href = window.location.href.split("?")[0];
   }
 
-  const [hasSavedData, setHasSavedData] = useStorage("initiated");
   useEffect(() => {
-    if (!hasSavedData) {
+    if (!localStorage.getItem("floor-plan")) {
+      localStorage.setItem("floor-plan", "[]");
       Object.entries(defaultSettings).forEach(([key, value]) => {
         localStorage.setItem(key, typeof value === "object" ? JSON.stringify(value) : value);
       });
-      setHasSavedData(true);
       location.reload();
     }
   }, []); // eslint-disable-line

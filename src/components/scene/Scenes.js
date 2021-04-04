@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import SceneButton from "./SceneButton";
 import useStorage from "hooks/useStorage";
-import useWeather from "hooks/useWeather";
 import createToast from "utils/createToast";
 import t from "utils/translate";
 import { normalizeToBulb } from "utils/colorUtils";
@@ -61,10 +60,10 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
   }
 
   return (
-    <div className="card">
+    <div className="card mt-3">
       <div className="card-body p-3">
         <div className="btn-group">
-          {scenes.map((scene, i) => (
+          {scenes.map((scene) => (
             <SceneButton
               disabled={lights.length === 0}
               key={scene.name}
@@ -116,6 +115,7 @@ export function ScenesSettings({ sunrise, sunset }) {
           alt={t(scene.name)}
         />
       }
+      type="time"
       value={scenesDaylight ? daylightValues[i] : scene.schedule.time}
       onChange={(e) => saveSceneSchedule(scene.name, e.target.value)}
     />

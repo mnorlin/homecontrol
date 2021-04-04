@@ -2,12 +2,10 @@ const gulp = require("gulp");
 const inlinesource = require("gulp-inline-source");
 const replace = require("gulp-replace");
 const base64 = require("gulp-base64-inline");
-const rename = require("gulp-rename");
 
 gulp.task("default", () => {
   return gulp
     .src("./build/index.html")
-    .pipe(rename("./standalone.html"))
     .pipe(replace('.js"></script>', '.js" inline></script>'))
     .pipe(replace('rel="stylesheet">', 'rel="stylesheet" inline>'))
     .pipe(replace('href="/img/', 'href="inline(/img/'))
@@ -25,5 +23,5 @@ gulp.task("default", () => {
         ignore: ["png"],
       })
     )
-    .pipe(gulp.dest("./build"));
+    .pipe(gulp.dest("./release"));
 });

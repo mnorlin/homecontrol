@@ -1,5 +1,3 @@
-/src/default-settings.json
-
 # dependencies
 /node_modules
 .pnp
@@ -10,6 +8,7 @@
 
 # production
 /build
+/release
 
 # misc
 /.vscode

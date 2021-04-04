@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import useStorage from "hooks/useStorage";
 import t from "utils/translate";
 import { getTimeUntilHour } from "utils/timeUtils";
 
 const watcher = window.matchMedia("(prefers-color-scheme: dark)");
 
-export default function ThemeSettings({ rooms }) {
+export default function ThemeSettings() {
   const [theme, saveTheme] = useStorage("theme");
   const setTheme = useTheme();
 
@@ -124,10 +124,6 @@ function setSystem() {
   } else {
     setLight();
   }
-
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", (e) => {
-    const newColorScheme = e.matches ? "dark" : "light";
-  });
 
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", onSchemeChange);
 }

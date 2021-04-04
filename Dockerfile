@@ -6,8 +6,8 @@ RUN npm install
 
 FROM installation as build
 COPY ./ /app/
-RUN npm run build
+RUN npm run release
 
 
 FROM nginx as publish
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/release/index.html /usr/share/nginx/html
