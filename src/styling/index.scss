@@ -32,13 +32,12 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   $body-bg: $gray-2;
   $body-color: $secondary;
   $text-muted: $gray-4;
+  $link-color: $secondary;
 
   $card-cap-bg: $secondary;
   $card-cap-color: $body-bg;
   $card-border-color: $body-bg;
   $accordion-bg: white;
-
-  $link-color: $secondary;
 
   $input-disabled-bg: $gray-1;
   $input-group-addon-bg: $gray-2;
@@ -93,6 +92,7 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
 
   $modal-content-bg: $gray-6;
   $modal-backdrop-opacity: 0.8;
+  $modal-backdrop-bg: black;
   $border-color: black;
   $btn-close-color: $body-color;
 

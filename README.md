@@ -1,4 +1,4 @@
-<div align="center">![Demo](docs/demo.gif "Demo")</div>
+<div align="center"><img src="docs/demo.gif" /></div>
 
 # Home Control
 
@@ -43,6 +43,7 @@ Then execute `npm run release`, when finished, you can open up `./release/index.
 The app is now available at `http://localhost:3000`.
 
 To reset to default settings, add `?reset=true` to the url, eg. `http://localhost:3000?reset=true`.
+
 To view settings and incoming data, add `?debug=true` to the url, eg. `http://localhost:3000?debug=true`.
 
 ### Run as a docker container
