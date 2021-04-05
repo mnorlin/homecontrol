@@ -22,7 +22,7 @@ function getMousePos(e, canvasWrapper) {
 }
 
 function compensateRotation(mousePos, canvasWrapper) {
-  let angle = canvasWrapper.style.transform?.split("rotate(")?.[1]?.split("deg")?.[0] / 360;
+  let angle = (canvasWrapper.style.transform?.split("rotate(")?.[1]?.split("deg")?.[0] * 2 * Math.PI) / 360;
 
   if (angle === undefined) {
     const matrixString = window.getComputedStyle(canvasWrapper, null).getPropertyValue("transform");
