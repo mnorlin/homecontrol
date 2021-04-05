@@ -52,6 +52,10 @@ export function getRedIn8bit(color) {
   if (color.includes("rgb")) {
     return color.split("(")[1].split(",");
   }
+
+  if (color === "grey") {
+    return "128"; // For some reason I get "grey" instead of #808080 on iOS devices from getPropertyValue()
+  }
 }
 
 /*
