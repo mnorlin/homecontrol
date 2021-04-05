@@ -31,7 +31,7 @@
       ]
     }
   ],
-  "hue-scenes-schedule": true,
+  "hue-scenes-schedule": false,
   "hue-scenes-daylight": false,
   "hue-scenes": [
     {
