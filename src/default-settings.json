@@ -31,7 +31,8 @@
       ]
     }
   ],
-  "hue-scenes-daylight": "true",
+  "hue-scenes-schedule": true,
+  "hue-scenes-daylight": false,
   "hue-scenes": [
     {
       "name": "scene.name.morning",

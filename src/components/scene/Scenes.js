@@ -12,6 +12,7 @@ import SwitchInput from "components/common/SwitchInput";
 export function Scenes({ lights, updateLight, sunrise, sunset }) {
   const [savedScenes] = useStorage("hue-scenes", true);
   const [scenesDaylight] = useStorage("hue-scenes-daylight", true);
+  const [scheduleOn] = useStorage("hue-scenes-schedule", true);
 
   let scenes = savedScenes;
   if (scenes.length === 5 && scenesDaylight) {
@@ -35,7 +36,7 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
   useEffect(() => {
     const timeoutIds = [];
     for (const scene of scenes) {
-      if (!scene.schedule?.time) {
+      if (!scheduleOn || !scene.schedule?.time) {
         break;
       }
 
@@ -53,7 +54,7 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
         clearTimeout(timeoutId);
       }
     };
-  }, [scenes, onColorSwitchClick]);
+  }, [scheduleOn, scenes, onColorSwitchClick]);
 
   if (scenes.length === 0) {
     return null;
@@ -82,6 +83,7 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
 export function ScenesSettings({ sunrise, sunset }) {
   const [scenes, saveScenes] = useStorage("hue-scenes", true);
   const [scenesDaylight, saveScenesDaylight] = useStorage("hue-scenes-daylight", true);
+  const [scheduleOn, saveScheduleOn] = useStorage("hue-scenes-schedule", true);
 
   if (!scenes) {
     return <></>;
@@ -100,7 +102,7 @@ export function ScenesSettings({ sunrise, sunset }) {
 
   const sceneInputs = scenes.map((scene, i) => (
     <Input
-      disabled={scenesDaylight}
+      disabled={!scheduleOn || (scenesDaylight && sunrise && sunset)}
       key={scene.name}
       icon={
         <SceneIcon
@@ -124,12 +126,21 @@ export function ScenesSettings({ sunrise, sunset }) {
   return (
     <>
       <SwitchInput
-        name={t("settings.scenes.automatic")}
-        checked={scenesDaylight}
-        onChange={() => saveScenesDaylight(!scenesDaylight)}
+        name={t("settings.scenes.schedule")}
+        checked={scheduleOn}
+        onChange={() => saveScheduleOn(!scheduleOn)}
         className="my-3"
       />
-      {sceneInputs}
+      <div className={!scheduleOn && "d-none"}>
+        <SwitchInput
+          disabled={!scheduleOn || !sunrise || !sunset}
+          name={t("settings.scenes.automatic")}
+          checked={sunrise && sunset && scenesDaylight}
+          onChange={() => saveScenesDaylight(!scenesDaylight)}
+          className="my-3"
+        />
+        {sceneInputs}
+      </div>
     </>
   );
 }
