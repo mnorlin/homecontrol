@@ -99,8 +99,8 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2.4' fill='#{$gray-3}'/></svg>");
   $form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3.2' fill='#{$gray-5}'/><circle r='2.4' fill='#{$gray-3}'/></svg>");
 
-  $toast-background-color: $card-bg;
-  $toast-header-background-color: $card-cap-bg;
+  $toast-background-color: rgba($card-bg, 0.85);
+  $toast-header-background-color: rgba($card-cap-bg, 0.5);
   $toast-header-color: $gray-3;
   $toast-border-color: $card-cap-bg;
 
