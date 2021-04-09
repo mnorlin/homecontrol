@@ -64,8 +64,8 @@ export function useTheme() {
         break;
       case "night":
         setNight(
-          scenes.find((s) => s.name === "scene.name.night").schedule.time,
-          scenes.find((s) => s.name === "scene.name.morning").schedule.time
+          scenes.find((s) => s.name === "night")?.schedule?.time,
+          scenes.find((s) => s.name === "morning")?.schedule?.time
         );
         break;
       default:

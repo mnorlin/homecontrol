@@ -10,7 +10,8 @@ export default function Settings({ children }) {
   const [selectedId, setSelectedId] = useState(null);
 
   function onClose() {
-    window.location.reload();
+    //window.location.reload();
+    setShow(false);
   }
 
   const handleClose = () => window.location.reload();
