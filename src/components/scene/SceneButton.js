@@ -1,11 +1,10 @@
 import React from "react";
-import { Button } from "react-bootstrap-v5";
 import SceneIcon from "./SceneIcon";
 
-export default function SceneButton({ icon, style, ...props }) {
+export default function SceneButton({ name, icon, ...props }) {
   return (
-    <Button variant="none" className="scene-button p-0" {...props}>
-      <SceneIcon icon={icon} style={style} className="img-fluid" />
-    </Button>
+    <button className={`scene-button scene-button-${name}`} {...props}>
+      <SceneIcon icon={icon} style={{ border: icon ? null : "none" }} className={`img-fluid`} />
+    </button>
   );
 }

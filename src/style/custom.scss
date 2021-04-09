@@ -7,14 +7,67 @@
   vertical-align: -0.125em;
 }
 
-.scene-button {
+.scenes {
+  display: flex;
   overflow: hidden;
+}
+.scene-button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: white;
+}
 
-  // Hack to fix spacing on iOS devices
-  margin-left: -1px !important;
-  border-width: 0 !important;
-  color: white !important;
-  z-index: 0 !important;
+.scene-button svg {
+  border-bottom: 2px solid currentcolor;
+  transform: scale(0.75, 0.75);
+}
+
+.scene-button svg * {
+  stroke-width: 4px !important;
+}
+
+.scene-button:not(:last-of-type) {
+  border-right-width: 0px;
+}
+
+.scene-button:not(:first-of-type) {
+  border-left-width: 0px;
+}
+
+.scene-button-morning {
+  background-color: var(--scene-morning-bg);
+}
+.scene-button-morning svg * {
+  transform: scale(0.67, 0.67) translate(0, 132px);
+}
+
+.scene-button-forenoon {
+  background-color: var(--scene-forenoon-bg);
+}
+.scene-button-forenoon svg * {
+  transform: scale(0.67, 0.67) translate(16px, 0);
+}
+
+.scene-button-afternoon {
+  background-color: var(--scene-afternoon-bg);
+}
+.scene-button-afternoon svg * {
+  transform: scale(0.67, 0.67) translate(42px, 0);
+}
+
+.scene-button-evening {
+  background-color: var(--scene-evening-bg);
+}
+.scene-button-evening svg * {
+  transform: scale(0.67, 0.67) translate(64px, 132px);
+}
+
+.scene-button-night {
+  background-color: var(--scene-night-bg);
+}
+.scene-button-night svg * {
+  transform: scale(0.67, 0.67) translate(32px, 0px);
 }
 
 .disabled {

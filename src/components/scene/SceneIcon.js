@@ -1,24 +1,15 @@
 import React from "react";
-import { ReactComponent as Morning } from "./morning.svg";
-import { ReactComponent as Forenoon } from "./forenoon.svg";
-import { ReactComponent as Afternoon } from "./afternoon.svg";
-import { ReactComponent as Evening } from "./evening.svg";
-import { ReactComponent as Night } from "./night.svg";
-import { ReactComponent as Default } from "./default.svg";
+import { ReactComponent as Sun } from "./sun.svg";
+import { ReactComponent as Moon } from "./moon.svg";
+import { ReactComponent as Empty } from "./empty.svg";
 
 export default function SceneIcon({ icon, ...props }) {
   switch (icon) {
-    case "morning":
-      return <Morning {...props} />;
-    case "forenoon":
-      return <Forenoon {...props} />;
-    case "afternoon":
-      return <Afternoon {...props} />;
-    case "evening":
-      return <Evening {...props} />;
-    case "night":
-      return <Night {...props} />;
+    case "sun":
+      return <Sun {...props} />;
+    case "moon":
+      return <Moon {...props} />;
     default:
-      return <Default {...props} />;
+      return <Empty {...props} />;
   }
 }

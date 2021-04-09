@@ -1,0 +1,11 @@
+<svg width="128" height="128" version="1.1" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="63.998" cy="63.998" r="27.305" style="fill:none;paint-order:markers stroke fill;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m63.998 2.9861v12.207" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m2.9861 63.998 12.207 3e-6" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m63.998 125.01 3e-6 -12.207" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m125.01 63.998-12.207-4e-6" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m20.855 20.855 8.6319 8.6319" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m107.14 20.855-8.6319 8.6319" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m107.14 107.14-8.6319-8.6319" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+ <path d="m20.855 107.14 8.6319-8.6319" style="fill:none;stroke-linecap:round;stroke-width:5.9722;stroke:currentcolor"/>
+</svg>

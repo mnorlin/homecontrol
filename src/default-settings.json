@@ -35,33 +35,32 @@
   "hue-scenes-daylight": false,
   "hue-scenes": [
     {
-      "name": "scene.name.morning",
-      "icon": "morning",
+      "name": "morning",
+      "icon": "sun",
       "state": { "bri": 254, "hue": 41432, "sat": 75 },
       "schedule": { "time": "06:00" }
     },
     {
-      "name": "scene.name.forenoon",
-      "icon": "forenoon",
+      "name": "forenoon",
+      "icon": "sun",
       "state": { "bri": 254, "hue": 39391, "sat": 14 },
       "schedule": { "time": "08:00" }
     },
     {
-      "name": "scene.name.afternoon",
-      "icon": "afternoon",
+      "name": "afternoon",
+      "icon": "sun",
       "state": { "bri": 254, "hue": 8595, "sat": 121 },
       "schedule": { "time": "12:00" }
     },
     {
-      "name": "scene.name.evening",
-      "icon": "evening",
+      "name": "evening",
+      "icon": "sun",
       "state": { "bri": 254, "hue": 7688, "sat": 199 },
       "schedule": { "time": "18:00" }
     },
     {
-      "name": "scene.name.night",
-      "icon": "night",
-      "color": "#434343",
+      "name": "night",
+      "icon": "moon",
       "state": { "bri": 144, "hue": 7688, "sat": 199 },
       "schedule": { "time": "21:00" }
     }

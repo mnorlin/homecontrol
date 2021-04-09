@@ -53,17 +53,11 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   --floor-plan-inactive: #{$gray-3};
   --floor-plan-disabled: #{$red-100};
 
-  --scene-morning-gradient: transparent;
-  --scene-forenoon-gradient: transparent;
-  --scene-afternoon-gradient: transparent;
-  --scene-evening-gradient: transparent;
-  --scene-night-gradient: transparent;
-
-  --scene-morning-bg: #0b5289;
-  --scene-forenoon-bg: #1d97d8;
-  --scene-afternoon-bg: #{$hc-primary};
-  --scene-evening-bg: #f25805;
-  --scene-night-bg: #{$hc-secondary};
+  --scene-morning-bg: rgb(11, 82, 137);
+  --scene-forenoon-bg: rgb(29, 151, 216);
+  --scene-afternoon-bg: rgb(249, 193, 0);
+  --scene-evening-bg: rgb(242, 88, 5);
+  --scene-night-bg: rgb(67, 67, 67);
 }
 
 .theme-dark {
@@ -118,15 +112,9 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   --floor-plan-inactive: #{$gray-5};
   --floor-plan-disabled: rgb(80, 43, 48);
 
-  --scene-morning-gradient: transparent;
-  --scene-forenoon-gradient: transparent;
-  --scene-afternoon-gradient: transparent;
-  --scene-evening-gradient: transparent;
-  --scene-night-gradient: transparent;
-
-  --scene-morning-bg: #33658a;
-  --scene-forenoon-bg: #86bbd8;
-  --scene-afternoon-bg: #{$hc-primary};
-  --scene-evening-bg: #f26419;
-  --scene-night-bg: #{$hc-secondary};
+  --scene-morning-bg: rgb(51, 101, 138);
+  --scene-forenoon-bg: rgb(134, 187, 216);
+  --scene-afternoon-bg: rgb(249, 193, 0);
+  --scene-evening-bg: rgb(242, 100, 25);
+  --scene-night-bg: #{$gray-6};
 }

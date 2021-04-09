@@ -43,7 +43,7 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
       const timeLeft = getTimeUntilHour(scene.schedule.time);
 
       const timeoutId = setTimeout(() => {
-        createToast("info", t("scenes.schedule.running").replace("{0}", t(scene.name)), 300 * 1000);
+        createToast("info", t("scenes.schedule.running").replace("{0}", t(`scene.name.${scene.name}`)), 300 * 1000);
         onColorSwitchClick(scene.name, 3000);
       }, timeLeft);
       timeoutIds.push(timeoutId);
@@ -61,21 +61,18 @@ export function Scenes({ lights, updateLight, sunrise, sunset }) {
   }
 
   return (
-    <div className="card mt-3">
-      <div className="card-body p-3">
-        <div className="btn-group">
-          {scenes.map((scene) => (
-            <SceneButton
-              disabled={lights.length === 0}
-              key={scene.name}
-              name={scene.name}
-              icon={scene.icon}
-              onClick={() => onColorSwitchClick(scene.name)}
-              style={{ fill: scene.color ? scene.color : `var(--scene-${scene.icon}-bg)` }}
-            />
-          ))}
-        </div>
-      </div>
+    <div className="scenes rounded mt-3">
+      {scenes.map((scene) => (
+        <SceneButton
+          disabled={lights.length === 0}
+          key={scene.name}
+          name={scene.name}
+          icon={scene.icon}
+          style={{ backgroundColor: scene.backgroundColor }}
+          onClick={() => onColorSwitchClick(scene.name)}
+          aria-label={t(`scene.name.${scene.name}`)}
+        />
+      ))}
     </div>
   );
 }
@@ -105,17 +102,13 @@ export function ScenesSettings({ sunrise, sunset }) {
       disabled={!scheduleOn || (scenesDaylight && sunrise && sunset)}
       key={scene.name}
       icon={
-        <SceneIcon
-          className="rounded-1"
-          style={{
-            width: "2.5rem",
-            height: "2.5rem",
-            fill: scene.color ? scene.color : `var(--scene-${scene.icon}-bg)`,
-            color: "white",
-          }}
-          icon={scene.icon}
-          alt={t(scene.name)}
-        />
+        <div className={`rounded-1 scene-button scene-button-${scene.name}`}>
+          <SceneIcon
+            icon={scene.icon}
+            style={{ border: scene.icon ? null : "none", width: "2.5rem", height: "2.5rem", strokeWidth: "34px" }}
+            title={t(`scene.name.${scene.name}`)}
+          />
+        </div>
       }
       type="time"
       value={scenesDaylight ? daylightValues[i] : scene.schedule.time}
