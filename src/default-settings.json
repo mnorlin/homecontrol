@@ -38,7 +38,7 @@
       "name": "morning",
       "icon": "sun",
       "state": { "bri": 254, "hue": 41432, "sat": 75 },
-      "schedule": { "time": "06:00" }
+      "schedule": { "time": "05:30" }
     },
     {
       "name": "forenoon",
