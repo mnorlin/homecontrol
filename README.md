@@ -6,6 +6,8 @@ Set up a dashboard to control your Philips Hue lights using an old tablet or pho
 
 This application runs as a standalone website in a browser, no need for any installation or deployment (if you don't want to), as long as you have a device that can view local .html files.
 
+A demo of the application can be found at [https://mnorlin.github.io/homecontrol/](https://mnorlin.github.io/homecontrol/).
+
 **Features:**
 
 - Generate a floor map from coordinates.
@@ -101,4 +103,4 @@ A line is drawn between each coordinate in the array. If you want to make space 
 ## Licenses
 
 - Code licensed under GNU General Public License 3
-- Weather Icons licensed under SIL OFL 1.1 (https://github.com/erikflowers/weather-icons)
+- Scene and weather Icons are licensed under SIL OFL 1.1, based on (https://github.com/erikflowers/weather-icons)
