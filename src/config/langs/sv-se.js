@@ -71,7 +71,7 @@ const svSe = [
     ["github.demo.title", "Home Control"],
     [
       "github.demo.body.p1",
-      "Detta är en demo av Home Control. Du kan fritt testa appen på den här sidan, på grund av begränsningar i webbläsare, kan du inte testa den med din egen Philips Hue hub.",
+      "Detta är en demo av Home Control. Du kan fritt testa appen på den här sidan, däremot kan du inte ansluta mot en egen Philips Hue hub.",
     ],
     ["github.demo.body.p2", "För instruktioner för hur du använder den, besök projektets sida på Github:"],
   ]),

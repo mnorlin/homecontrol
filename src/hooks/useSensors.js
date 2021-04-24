@@ -61,7 +61,7 @@ function convertTemp(unit, temp) {
 
 const mockedSensors = {
   23: {
-    state: { temperature: null, lastupdated: "none" },
+    state: { temperature: 2100, lastupdated: "none" },
     swupdate: { state: "noupdates", lastinstall: "2019-04-07T07:54:57" },
     config: {
       on: false,

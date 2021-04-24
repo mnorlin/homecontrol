@@ -7,12 +7,7 @@ import useStorage from "hooks/useStorage";
 import t from "utils/translate";
 
 export function Weather({ weatherNow, weatherForecast }) {
-  const [city] = useStorage("weather-city");
-  const [key] = useStorage("weather-key");
 
-  if (!city || !key) {
-    return null;
-  }
   if (!(weatherNow.name && weatherForecast.length > 0)) {
     return (
       <div className="mt-3">

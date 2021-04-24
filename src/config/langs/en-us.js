@@ -74,7 +74,7 @@ const enUs = [
     ["github.demo.title", "Home Control"],
     [
       "github.demo.body.p1",
-      "This is a demo of the Home Control application. You can freely test it on this page. Due to browser restrictions, you can not test it with your own Philips Hue hub",
+      "This is a demo of the Home Control application. You can freely test it on this page, but you cannot connect to your own Philips Hue hub",
     ],
     ["github.demo.body.p2", "For instruction of how to use it, visit the project on Github:"],
   ]),

@@ -4,10 +4,9 @@ import useRooms from "hooks/useRooms";
 import useWeather from "hooks/useWeather";
 import useSensors from "hooks/useSensors";
 import useStorage from "hooks/useStorage";
-
-import { Collapse } from "react-bootstrap";
 import { ChevronCompactDown, ChevronCompactUp } from "react-bootstrap-icons";
-
+import { Collapse, Modal, Button } from "react-bootstrap";
+import { ReactComponent as Icon } from "./icon.svg";
 import Debug from "./Debug";
 import { Weather, WeatherSettings } from "components/weather/Weather";
 import { Scenes, ScenesSettings } from "components/scene/Scenes";
@@ -23,6 +22,7 @@ import t from "utils/translate";
 import defaultSettings from "default-settings.json";
 
 export default function App() {
+  const [show, setShow] = useState(true);
   const url = new URL(window.location.href);
   if (url.searchParams.get("reset")) {
     localStorage.clear();
@@ -100,6 +100,28 @@ export default function App() {
         <FloorPlanSettings title={t("settings.floor-plan")} />
         <ThemeSettings title={t("settings.theme")} />
       </Settings>
+      <Modal show={show} onHide={() => setShow(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{t("github.demo.title")}</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <Icon className="w-25 mx-auto rounded d-block mb-4" />
+          <p>{t("github.demo.body.p1")}</p>
+          <p>{t("github.demo.body.p2")}</p>
+          <p className="text-center">
+            <a className="btn btn-secondary" href="https://github.com/mnorlin/homecontrol">
+              https://github.com/mnorlin/homecontrol
+            </a>
+          </p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="outline-secondary" onClick={() => setShow(false)}>
+            {t("common.close")}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
