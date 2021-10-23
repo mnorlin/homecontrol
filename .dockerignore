@@ -11,9 +11,13 @@
 **/.toolstarget
 **/.vs
 **/.vscode
+**/.nova
 **/*.*proj.user
 **/*.dbmdl
 **/*.jfm
+**/build
+**/.gradle
+**/.idea
 **/azds.yaml
 **/bin
 **/charts

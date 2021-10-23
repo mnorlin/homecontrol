@@ -1,6 +1,6 @@
 import React from "react";
 import t from "utils/translate";
-import { ButtonGroup, Button } from "react-bootstrap-v5";
+import { ButtonGroup, Button } from "react-bootstrap";
 import { Lightbulb, LightbulbOff } from "react-bootstrap-icons";
 
 export default function ButtonSection({ lights, updateLight }) {

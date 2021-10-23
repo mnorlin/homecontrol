@@ -87,17 +87,6 @@
   backdrop-filter: blur(5px);
 }
 
-// TOOD: React Bootstrap v5 bugs
-.close {
-  @extend .btn-close;
-  span:first-child {
-    display: none;
-  }
-}
-.sr-only {
-  @extend .visually-hidden;
-}
-
 /* Floor plan */
 #floor-plan-wrapper {
   position: relative;

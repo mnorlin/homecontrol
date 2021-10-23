@@ -5,7 +5,7 @@ import useWeather from "hooks/useWeather";
 import useSensors from "hooks/useSensors";
 import useStorage from "hooks/useStorage";
 
-import { Collapse } from "react-bootstrap-v5";
+import { Collapse } from "react-bootstrap";
 
 import Debug from "./Debug";
 import { Weather, WeatherSettings } from "components/weather/Weather";

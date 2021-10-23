@@ -1,6 +1,6 @@
 import React, { useReducer, useState, useEffect } from "react";
 import Input from "components/common/Input";
-import { Button } from "react-bootstrap-v5";
+import { Button } from "react-bootstrap";
 import { CloudUpload } from "react-bootstrap-icons";
 import t from "utils/translate";
 

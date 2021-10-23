@@ -14,22 +14,19 @@ $font-family-sans-serif: Helvetica, sans-serif;
 $font-weight-normal: 100;
 $font-weight-bold: 400;
 $border-radius: 0.4rem;
-$line-height-base: 1.5;
 
 $form-check-input-border: 1px solid $gray-3;
 $form-check-input-width: 1.2em;
 $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel width
 
 :root {
-  --bs-body-font-family: #{$font-family-sans-serif};
-  --bs-body-font-weight: #{$font-weight-normal};
-  --bs-body-line-height: #{$line-height-base};
+  --bs-body-font-family: #{inspect($font-family-sans-serif)};
 }
 
 .theme-light {
   $primary: $hc-primary;
   $secondary: $hc-secondary;
-  $info: rgb(188, 188, 188); // gray-3;
+  $info: $gray-3;
   $black: $secondary;
 
   $body-bg: $gray-2;
@@ -42,7 +39,6 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   $card-border-color: $body-bg;
   $accordion-bg: white;
 
-  $input-bg: $gray-1;
   $input-disabled-bg: $gray-1;
   $input-group-addon-bg: $gray-2;
   $form-check-input-checked-border-color: $gray-1;
@@ -62,24 +58,12 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   --scene-afternoon-bg: rgb(249, 193, 0);
   --scene-evening-bg: rgb(242, 88, 5);
   --scene-night-bg: rgb(67, 67, 67);
-
-
- /*
-  * These variables are needed after upgrading from bootstrap 5.0.0-beta 3 -> 5.0.0
-  * Related to this? https://github.com/twbs/bootstrap/issues/34738
-  */
-  --bs-body-bg: #{$body-bg};
-  --bs-body-color: #{$body-color};
-  --bs-primary-rgb: #{to-rgb($primary)};
-  --bs-secondary-rgb: #{to-rgb($secondary)};
-  --bs-warning-rgb: #{to-rgb($warning)};
-  --bs-danger-rgb: #{to-rgb($danger)};
-  --bs-info-rgb: #{to-rgb($info)};
 }
 
 .theme-dark {
   $primary: $hc-primary;
   $secondary: $gray-3;
+  //$info: #dd9eff;
   $info: $gray-3;
   $black: $gray-5;
 
@@ -133,16 +117,4 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   --scene-afternoon-bg: rgb(249, 193, 0);
   --scene-evening-bg: rgb(242, 100, 25);
   --scene-night-bg: #{$gray-6};
-
- /*
-  * These variables are needed after upgrading from bootstrap 5.0.0-beta 3 -> 5.0.0
-  * Related to this? https://github.com/twbs/bootstrap/issues/34738
-  */
-  --bs-body-bg: #{$body-bg};
-  --bs-body-color: #{$body-color};
-  --bs-primary-rgb: #{to-rgb($primary)};
-  --bs-secondary-rgb: #{to-rgb($secondary)};
-  --bs-warning-rgb: #{to-rgb($warning)};
-  --bs-danger-rgb: #{to-rgb($danger)};
-  --bs-info-rgb: #{to-rgb($info)};
 }

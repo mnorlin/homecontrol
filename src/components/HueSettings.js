@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "components/common/Input";
 import useStorage from "hooks/useStorage";
-import { Button } from "react-bootstrap-v5";
+import { Button } from "react-bootstrap";
 import t from "utils/translate";
 import { Link } from "react-bootstrap-icons";
 
