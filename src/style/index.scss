@@ -123,9 +123,9 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   @import "bootstrap/scss/bootstrap.scss";
   @import "custom.scss";
 
-  --floor-plan-wall: black;
+  --floor-plan-wall: #{$gray-3};
   --floor-plan-active: #{$gray-4};
-  --floor-plan-inactive: #{$gray-5};
+  --floor-plan-inactive: #{$gray-6};
   --floor-plan-disabled: rgb(80, 43, 48);
 
   --scene-morning-bg: rgb(51, 101, 138);
