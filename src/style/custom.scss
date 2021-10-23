@@ -74,6 +74,11 @@
   opacity: 0.5;
 }
 
+.shadow-top {
+  border-top: 1px solid $control-section-border;
+  box-shadow: 0 -1rem 1rem -1rem rgba(var(--bs-dark-rgb), 0.2);
+}
+
 /* Bootstrap fixes */
 .modal-content {
   background-color: $modal-content-bg;

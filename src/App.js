@@ -6,6 +6,7 @@ import useSensors from "hooks/useSensors";
 import useStorage from "hooks/useStorage";
 
 import { Collapse } from "react-bootstrap";
+import { ChevronCompactDown, ChevronCompactUp } from "react-bootstrap-icons";
 
 import Debug from "./Debug";
 import { Weather, WeatherSettings } from "components/weather/Weather";
@@ -43,7 +44,7 @@ export default function App() {
     setTheme();
   }, []); // eslint-disable-line
 
-  const [collapseState, setCollapseState] = useState(false);
+  const [controlsHidden, setControlsHidden] = useState(true);
 
   const [lights, updateLight] = useLights(1000 * 10); // Update every 10sec
   const sensors = useSensors(1000 * 60); // Update every 1min
@@ -56,7 +57,7 @@ export default function App() {
 
   useEffect(() => {
     const hasFloorPlan = rooms.find((room) => room.walls?.length > 0);
-    setCollapseState(!hasFloorPlan);
+    setControlsHidden(hasFloorPlan);
   }, [rooms.length]); // eslint-disable-line
 
   if (url.searchParams.get("debug")) {
@@ -72,18 +73,19 @@ export default function App() {
         lights={lightsIgnored}
         updateLight={updateLight}
       />
-      <SummarySection
-        lights={lights}
-        sensors={sensors}
-        onClickCallback={() => {
-          setCollapseState(!collapseState);
-        }}
-      />
-      <Collapse in={collapseState}>
+      <SummarySection lights={lights} sensors={sensors} />
+      <Collapse in={!controlsHidden}>
         <div>
           <ControlSection updateLight={updateLight} rooms={rooms} />
         </div>
       </Collapse>
+      <div
+        className="text-center fs-3 shadow-top mt-4"
+        style={{ cursor: "pointer" }}
+        onClick={() => setControlsHidden(!controlsHidden)}
+      >
+        {controlsHidden ? <ChevronCompactDown /> : <ChevronCompactUp />}
+      </div>
       <FloorPlan updateLight={updateLight} rooms={roomsIgnored} />
       <ButtonSection lights={lightsIgnored} updateLight={updateLight} />
       <Settings>

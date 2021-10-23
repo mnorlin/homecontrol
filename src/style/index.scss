@@ -49,6 +49,7 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3.2' fill='#{$gray-3}'/></svg>");
   $form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3.2' fill='#{$gray-1}'/><circle r='2.4' fill='#{$gray-1}'/></svg>");
 
+  $control-section-border: $gray-1;
   @import "bootstrap/scss/bootstrap.scss";
   @import "custom.scss";
 
@@ -72,15 +73,19 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   --bs-body-color: #{$body-color};
   --bs-primary-rgb: #{to-rgb($primary)};
   --bs-secondary-rgb: #{to-rgb($secondary)};
+  --bs-success-rgb: #{to-rgb($success)};
   --bs-warning-rgb: #{to-rgb($warning)};
   --bs-danger-rgb: #{to-rgb($danger)};
   --bs-info-rgb: #{to-rgb($info)};
+  --bs-dark-rgb: #{to-rgb($dark)};
+  --bs-light-rgb: #{to-rgb($light)};
 }
 
 .theme-dark {
   $primary: $hc-primary;
   $secondary: $gray-3;
   $info: $gray-3;
+  $dark: $gray-7;
   $black: $gray-5;
 
   $body-bg: $gray-5;
@@ -120,6 +125,7 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   $toast-header-color: $gray-3;
   $toast-border-color: $card-cap-bg;
 
+  $control-section-border: $gray-6;
   @import "bootstrap/scss/bootstrap.scss";
   @import "custom.scss";
 
@@ -134,15 +140,14 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   --scene-evening-bg: rgb(242, 100, 25);
   --scene-night-bg: #{$gray-6};
 
- /*
-  * These variables are needed after upgrading from bootstrap 5.0.0-beta 3 -> 5.0.0
-  * Related to this? https://github.com/twbs/bootstrap/issues/34738
-  */
   --bs-body-bg: #{$body-bg};
   --bs-body-color: #{$body-color};
   --bs-primary-rgb: #{to-rgb($primary)};
   --bs-secondary-rgb: #{to-rgb($secondary)};
+  --bs-success-rgb: #{to-rgb($success)};
   --bs-warning-rgb: #{to-rgb($warning)};
   --bs-danger-rgb: #{to-rgb($danger)};
   --bs-info-rgb: #{to-rgb($info)};
+  --bs-dark-rgb: #{to-rgb($dark)};
+  --bs-light-rgb: #{to-rgb($light)};
 }
