@@ -10,13 +10,7 @@ export default function useRooms() {
   const [floorPlan] = useStorage("floor-plan", true);
 
   useEffect(() => {
-    fetchGroups();
-    function fetchGroups() {
-      fetch(`http://${ip}/api/${username}/groups`)
-        .then((response) => response.json())
-        .then((data) => setRooms(mapRooms(data, floorPlan)))
-        .catch((error) => createToast("danger", t("hue.error.connect").replace("{0}", ip).replace("{1}", error)));
-    }
+    setRooms(mapRooms(mockedRooms, floorPlan))
   }, [ip, username, floorPlan]);
 
   return rooms;
@@ -51,3 +45,45 @@ function sortByName(a, b) {
   }
   return 0;
 }
+
+
+const mockedRooms = {
+  1: {
+    name: "Room 1",
+    lights: ["1", "2"],
+    sensors: [],
+    type: "Room",
+    state: { all_on: true, any_on: true },
+    recycle: false,
+    action: {
+      on: true,
+      bri: 254,
+      hue: 8417,
+      sat: 140,
+      effect: "none",
+      xy: [0.4573, 0.41],
+      ct: 366,
+      alert: "select",
+      colormode: "ct",
+    },
+  },
+  2: {
+    name: "Room 2",
+    lights: ["3"],
+    sensors: ["23"],
+    type: "Room",
+    state: { all_on: false, any_on: false },
+    recycle: false,
+    action: {
+      on: false,
+      bri: 254,
+      hue: 8417,
+      sat: 140,
+      effect: "none",
+      xy: [0.4573, 0.41],
+      ct: 366,
+      alert: "select",
+      colormode: "ct",
+    },
+  },
+};

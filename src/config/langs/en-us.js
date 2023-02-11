@@ -71,6 +71,12 @@ const enUs = [
     ["weather.register", "Visit {0} to register an API key"],
     ["weather.error.service-message", "Error fetching weather data, server responded: '{0}'"],
     ["weather.error.connection", "Error fetching weather data, check your internet connection"],
+    ["github.demo.title", "Home Control"],
+    [
+      "github.demo.body.p1",
+      "This is a demo of the Home Control application. You can freely test it on this page. Due to browser restrictions, you can not test it with your own Philips Hue hub",
+    ],
+    ["github.demo.body.p2", "For instruction of how to use it, visit the project on Github:"],
   ]),
 ];
 

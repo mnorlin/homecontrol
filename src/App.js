@@ -46,9 +46,9 @@ export default function App() {
 
   const [controlsHidden, setControlsHidden] = useState(true);
 
-  const [lights, updateLight] = useLights(1000 * 10); // Update every 10sec
-  const sensors = useSensors(1000 * 60); // Update every 1min
-  const weatherProps = useWeather(1000 * 60 * 30); // Update every 30min
+  const [lights, updateLight] = useLights(1000*60*60);
+  const sensors = useSensors(1000*60*60);
+  const weatherProps = useWeather(1000*60*60);
   const rooms = mapToRooms(useRooms(), lights, sensors);
 
   const [ignoreList] = useStorage("lights-ignored", true);

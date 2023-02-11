@@ -16,12 +16,7 @@ export default function useLights(refreshRate) {
     }, refreshRate);
 
     function fetchLights() {
-      fetch(`http://${ip}/api/${username}/lights`)
-        .then((response) => response.json())
-        .then((lightStates) => setLights(lightStates))
-        .catch((error) =>
-          createToast("danger", t("hue.error.connect").replace("{0}", ip).replace("{1}", error), refreshRate - 1000)
-        );
+      setLights(mockedLights)
     }
 
     return () => {
@@ -39,14 +34,8 @@ export default function useLights(refreshRate) {
     }
   }
 
-  function putState(id, state) {
-    return fetch(`http://${ip}/api/${username}/lights/${id}/state`, {
-      method: "PUT",
-      body: JSON.stringify(state),
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-    });
+  function putState() {
+    return Promise.resolve()
   }
 
   function reducer(oldState, newState) {
@@ -79,3 +68,138 @@ function mapLights(newState) {
     reachable: light.state.reachable,
   }));
 }
+
+const mockedLights = {
+  1: {
+    state: {
+      on: true,
+      bri: 254,
+      hue: 14987,
+      sat: 141,
+      effect: "none",
+      xy: [0.4573, 0.41],
+      ct: 366,
+      alert: "select",
+      colormode: "ct",
+      mode: "homeautomation",
+      reachable: true,
+    },
+    swupdate: { state: "noupdates", lastinstall: "2022-12-08T13:23:12" },
+    type: "Extended color light",
+    name: "Ceiling lamp",
+    modelid: "LCT007",
+    manufacturername: "Signify Netherlands B.V.",
+    productname: "Hue color lamp",
+    capabilities: {
+      certified: true,
+      control: {
+        mindimlevel: 2000,
+        maxlumen: 800,
+        colorgamuttype: "B",
+        colorgamut: [
+          [0.675, 0.322],
+          [0.409, 0.518],
+          [0.167, 0.04],
+        ],
+        ct: { min: 153, max: 500 },
+      },
+      streaming: { renderer: true, proxy: true },
+    },
+    config: {
+      archetype: "sultanbulb",
+      function: "mixed",
+      direction: "omnidirectional",
+      startup: { mode: "safety", configured: true },
+    },
+    uniqueid: "00:00:00:00:00:00:00:00-00",
+    swversion: "67.101.2",
+  },
+  2: {
+    state: {
+      on: true,
+      bri: 254,
+      hue: 14987,
+      sat: 141,
+      effect: "none",
+      xy: [0.4573, 0.41],
+      ct: 366,
+      alert: "select",
+      colormode: "ct",
+      mode: "homeautomation",
+      reachable: true,
+    },
+    swupdate: { state: "noupdates", lastinstall: "2022-12-08T13:23:12" },
+    type: "Extended color light",
+    name: "Table lamp",
+    modelid: "LCT007",
+    manufacturername: "Signify Netherlands B.V.",
+    productname: "Hue color lamp",
+    capabilities: {
+      certified: true,
+      control: {
+        mindimlevel: 2000,
+        maxlumen: 800,
+        colorgamuttype: "B",
+        colorgamut: [
+          [0.675, 0.322],
+          [0.409, 0.518],
+          [0.167, 0.04],
+        ],
+        ct: { min: 153, max: 500 },
+      },
+      streaming: { renderer: true, proxy: true },
+    },
+    config: {
+      archetype: "sultanbulb",
+      function: "mixed",
+      direction: "omnidirectional",
+      startup: { mode: "safety", configured: true },
+    },
+    uniqueid: "00:00:00:00:00:00:00:00-01",
+    swversion: "67.101.2",
+  },
+  3: {
+    state: {
+      on: false,
+      bri: 254,
+      hue: 14987,
+      sat: 141,
+      effect: "none",
+      xy: [0.4573, 0.41],
+      ct: 366,
+      alert: "select",
+      colormode: "ct",
+      mode: "homeautomation",
+      reachable: true,
+    },
+    swupdate: { state: "noupdates", lastinstall: "2022-12-08T13:23:12" },
+    type: "Extended color light",
+    name: "Ceiling lamp",
+    modelid: "LCT007",
+    manufacturername: "Signify Netherlands B.V.",
+    productname: "Hue color lamp",
+    capabilities: {
+      certified: true,
+      control: {
+        mindimlevel: 2000,
+        maxlumen: 800,
+        colorgamuttype: "B",
+        colorgamut: [
+          [0.675, 0.322],
+          [0.409, 0.518],
+          [0.167, 0.04],
+        ],
+        ct: { min: 153, max: 500 },
+      },
+      streaming: { renderer: true, proxy: true },
+    },
+    config: {
+      archetype: "sultanbulb",
+      function: "mixed",
+      direction: "omnidirectional",
+      startup: { mode: "safety", configured: true },
+    },
+    uniqueid: "00:00:00:00:00:00:00:00-02",
+    swversion: "67.101.2",
+  },
+};

@@ -68,6 +68,12 @@ const svSe = [
     ["weather.register", "Besök {0} för att registrera en API-nyckel"],
     ["weather.error.service-message", "Problem med att hämta väderdata, servern svarade: '{0}'"],
     ["weather.error.connection", "Problem med att hämta väderdata, kontrollera internetanslutningen"],
+    ["github.demo.title", "Home Control"],
+    [
+      "github.demo.body.p1",
+      "Detta är en demo av Home Control. Du kan fritt testa appen på den här sidan, på grund av begränsningar i webbläsare, kan du inte testa den med din egen Philips Hue hub.",
+    ],
+    ["github.demo.body.p2", "För instruktioner för hur du använder den, besök projektets sida på Github:"],
   ]),
 ];
 

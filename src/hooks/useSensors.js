@@ -17,12 +17,7 @@ export default function useSensors(refreshRate) {
     }, refreshRate);
 
     function fetchSensors() {
-      fetch(`http://${ip}/api/${username}/sensors`)
-        .then((response) => response.json())
-        .then((data) => setSensors(mapSensor(data)))
-        .catch((error) =>
-          createToast("danger", t("hue.error.connect").replace("{0}", ip).replace("{1}", error), 15 * 1000)
-        );
+      setSensors(mapSensor(mockedSensors))
     }
 
     function mapSensor(sensors) {
@@ -62,3 +57,28 @@ function convertTemp(unit, temp) {
       return { temp: Math.round(temp), unit: "" };
   }
 }
+
+
+const mockedSensors = {
+  23: {
+    state: { temperature: null, lastupdated: "none" },
+    swupdate: { state: "noupdates", lastinstall: "2019-04-07T07:54:57" },
+    config: {
+      on: false,
+      battery: 0,
+      reachable: false,
+      alert: "none",
+      ledindication: false,
+      usertest: false,
+      pending: [],
+    },
+    name: "Hue temperature sensor 1",
+    type: "ZLLTemperature",
+    modelid: "SML001",
+    manufacturername: "Signify Netherlands B.V.",
+    productname: "Hue temperature sensor",
+    swversion: "6.1.1.27575",
+    uniqueid: "00:17:88:01:03:28:f0:ab-02-0402",
+    capabilities: { certified: true, primary: false },
+  },
+};
