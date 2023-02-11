@@ -24,6 +24,9 @@ $form-switch-width: $form-check-input-width * 1.62 - 0.125em; // Remove pixel wi
   --bs-body-font-family: #{$font-family-sans-serif};
   --bs-body-font-weight: #{$font-weight-normal};
   --bs-body-line-height: #{$line-height-base};
+  --bs-border-width: 1px;
+  --bs-border-style: solid;
+  --bs-border-color: transparent;
 }
 
 .theme-light {
