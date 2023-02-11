@@ -27,7 +27,6 @@ export default function FormFeedback({ id, validator, event, onValid }) {
     return null;
   }
 
-  let displayClass = "d-none"; // TODO: Make bootstrap do this, bug in beta3?
   if (errors.html.length + errors.custom.length === 0) {
     event.target.classList.add("is-valid");
     event.target.classList.remove("is-invalid");
@@ -35,11 +34,10 @@ export default function FormFeedback({ id, validator, event, onValid }) {
   } else {
     event.target.classList.remove("is-valid");
     event.target.classList.add("is-invalid");
-    displayClass = "d-block";
   }
 
   return (
-    <div id={id} className={`invalid-tooltip ${displayClass}`}>
+    <div id={id} className={`invalid-tooltip`}>
       {errors.html.map((error) => (
         <div key={error}>{t(`form.error.html.${error}`)}</div>
       ))}

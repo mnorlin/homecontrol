@@ -23,6 +23,7 @@ const svSe = [
     ["form.error.custom.not-json", "Detta är inte giltig JSON data"],
     ["form.error.custom.not-array", "Data måste vara en array, '[ ]'"],
     ["form.error.custom.no-coordinates", "Objektet måste innehålla x och y värden"],
+    ["form.error.custom.invalid-ip", "Inte en giltig IP-adress"],
     ["form.error.custom.coordinate-not-number", "Koordinaterna måste vara siffror"],
     ["form.error.html.rangeOverflow", "Värdet måste vara mellan 0-360"],
     ["scene.name.morning", "Morgon"],

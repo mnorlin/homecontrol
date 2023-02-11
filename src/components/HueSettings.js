@@ -23,7 +23,7 @@ export function HueSettings() {
   }
   return (
     <>
-      <Input label={t("hue.ip")} value={ip} onChange={(e) => saveIp(e.target.value)} />
+      <Input label={t("hue.ip")} validator={validIp} value={ip} onChange={(e) => saveIp(e.target.value)} />
       <Input
         label={t("hue.api-key")}
         value={username}
@@ -39,4 +39,11 @@ export function HueSettings() {
       </small>
     </>
   );
+}
+
+async function validIp(e) {
+  if (!/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(e.target.value)) {
+    return ["invalid-ip"]
+  }
+  return []
 }

@@ -24,6 +24,7 @@ const enUs = [
     ["form.error.custom.not-array", "Data must be an array, eg. '[ ]'"],
     ["form.error.custom.no-coordinates", "Object must contain x and y properties"],
     ["form.error.custom.coordinate-not-number", "Coordinate must be a number"],
+    ["form.error.custom.invalid-ip", "Not a valid IP-address"],
     ["form.error.html.rangeOverflow", "Value must be between 0-360"],
     ["scene.name.morning", "Morning"],
     ["scene.name.forenoon", "Forenoon"],
