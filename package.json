@@ -18,7 +18,7 @@
   "scripts": {
     "start": "PORT=3000 BROWSER=none react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
-    "release": "npm run build && gulp",
+    "postbuild": "gulp",
     "lint": "eslint src/components/**"
   },
   "eslintConfig": {
