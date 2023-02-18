@@ -1,14 +1,13 @@
-name: Build
+name: Release
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    tags:
+      - '*'
 
 jobs:
   build:
-    name: Build
+    name: Build Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -25,12 +24,13 @@ jobs:
         with:
           name: index.html
           path: release/index.html
-  prepare-release:
-    name: Prepare Release
-    needs: [build]
+  release:
+    name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: google-github-actions/release-please-action@v3
-        with:
-          release-type: node
-          package-name: release-please-action
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "index.html"
+        bodyFile: "CHANGELOG.md"
