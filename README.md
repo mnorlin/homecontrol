@@ -34,7 +34,7 @@ Start by cloning the repository
 
 Edit `src/default-settings.json` and modify to match your local configuration (You can just replace the file content with the exported setting file from the application).
 
-Then execute `npm install` and then `npm run release`, when finished, you can open up `./release/index.html` in your browser.
+Then execute `npm install` and then `npm run build`, when finished, you can open up `./release/index.html` in your browser.
 
 ### Run as an npm development server
 
