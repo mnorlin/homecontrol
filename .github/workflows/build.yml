@@ -20,17 +20,13 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build
-      - name: Upload HTML
-        uses: actions/upload-artifact@v3
-        with:
-          name: index.html
-          path: release/index.html
   prepare-release:
     name: Prepare Release
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - name: Release Please
+        uses: google-github-actions/release-please-action@v3
         with:
           release-type: node
           package-name: release-please-action

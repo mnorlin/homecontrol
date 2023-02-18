@@ -2,15 +2,21 @@ name: Release
 
 on:
   push:
+    branches: [main]
     tags:
-      - '*'
+      - "v*.*.*"
+  pull_request:
+    branches: [main]
+    tags:
+      - "v*.*.*"
 
 jobs:
-  build:
-    name: Build Release
+  release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -24,13 +30,8 @@ jobs:
         with:
           name: index.html
           path: release/index.html
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-    - uses: ncipollo/release-action@v1
-      with:
-        artifacts: "index.html"
-        bodyFile: "CHANGELOG.md"
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: CHANGELOG.md
+          files: release/index.html
