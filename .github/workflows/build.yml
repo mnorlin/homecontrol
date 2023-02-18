@@ -2,9 +2,8 @@ name: Build
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
@@ -25,12 +24,23 @@ jobs:
         with:
           name: index.html
           path: release/index.html
-  prepare-release:
-    name: Prepare Release
+  release:
+    name: Release
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - name: Release Please
+        id: release-please
+        uses: google-github-actions/release-please-action@v3
         with:
           release-type: node
           package-name: release-please-action
+      - name: Download index.html
+        uses: actions/download-artifact@v3
+        with:
+          name: index.html
+      - name: Release artifact
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: softprops/action-gh-release@v1
+        with:
+          files: index.html
